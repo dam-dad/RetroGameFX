@@ -20,6 +20,7 @@ public class App extends Application{
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("RetroGamesFX");
 		primaryStage.show();
+		primaryStage.setResizable(false);
 		//primaryStage.getIcons().add(new Image("/images/classroom-24x24.png"));
 		
 	}

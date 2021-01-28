@@ -1,8 +1,12 @@
 package controllersTest;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URI;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -30,10 +34,27 @@ public class MainViewController {
 	
 	@FXML
 	Text Titulo;
+
 	
-	Image image = new Image(new FileInputStream("/Images/Fondo.gif"));
-	ImageView IV = new ImageView(image);
-	
+    @FXML
+    void onClickCreditos(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onClickJugar(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onClickOpciones(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onClickSalir(ActionEvent event) {
+
+    }
 	public Pane getView() {
 		return View;
 	}
@@ -42,5 +63,6 @@ public class MainViewController {
 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainView.fxml"));
 	loader.setController(this);
 	loader.load();
+	
 }
 }
