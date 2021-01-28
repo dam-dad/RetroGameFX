@@ -1,0 +1,13 @@
+@font-face{
+	font-family:'ArcadeClassic';
+	src:url('../view/ARCADECLASSIC.TTF');
+}
+.root {
+	-fx-font-family: 'ArcadeClassic'
+}
+.text{
+	
+}
+.imagen{
+	-fx-background-image:url(../view/hugefondosonido.png);
+}
