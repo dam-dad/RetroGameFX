@@ -1,6 +1,6 @@
 @font-face{
 	font-family:'ArcadeClassic';
-	src:url('../view/ARCADECLASSIC.TTF');
+	src:url('../../Font/ARCADECLASSIC.TTF');
 }
 .root {
 	-fx-font-family: 'ArcadeClassic'
@@ -9,5 +9,5 @@
 	
 }
 .imagen{
-	-fx-background-image:url(../view/hugefondosonido.png);
+	-fx-background-image:url(../../Images/hugefondosonido.png);
 }
