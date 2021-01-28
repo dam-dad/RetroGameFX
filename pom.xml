@@ -3,4 +3,17 @@
   <groupId>dad.javafx</groupId>
   <artifactId>RetroGamesFX</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls</artifactId>
+			<version>11.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-fxml</artifactId>
+			<version>11.0.1</version>
+		</dependency>
+		
+	</dependencies>
 </project>
