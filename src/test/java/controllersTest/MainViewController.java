@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 
 public class MainViewController {
 
+    
 	@FXML
 	Pane View;
 	

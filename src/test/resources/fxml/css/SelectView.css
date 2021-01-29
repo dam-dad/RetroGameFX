@@ -9,6 +9,39 @@
 	
 }
 .imagen{
-	-fx-background-image:url(../../Images/FondoSelect2.gif);
+	-fx-background-image:url(../../Images/FondoSelect.gif);
 	-fx-background-size:600px 400px;
+	-fx-background-repeat:no-repeat;
+}
+.jueg01{
+	-fx-background-image:url(../../Images/pong.jpg);
+	-fx-background-size:cover,contain;
+}
+.jueg02{
+	-fx-background-image:url(../../Images/FondoSelec.gif);
+	-fx-background-size:cover,contain;
+}
+.jueg03{
+	-fx-background-image:url(../../Images/FondoSelec.gif);
+	-fx-background-size:cover,contain;
+}
+.jueg04{
+	-fx-background-image:url(../../Images/FondoSelec.gif);
+	-fx-background-size:cover,contain;
+}
+.fondogrid1{
+	-fx-background-image:url(../../Images/FondoSelec.gif);
+	-fx-background-size:cover,contain;
+}
+.fondogrid12{
+	-fx-background-image:url(../../Images/FondoSelec.gif);
+	-fx-background-size:cover,contain;
+}
+.fondogrid3{
+	-fx-background-image:url(../../Images/FondoSelec.gif);
+	-fx-background-size:cover,contain;
+}
+.fondogrid4{
+	-fx-background-image:url(../../Images/FondoSelec.gif);
+	-fx-background-size:cover,contain;
 }
