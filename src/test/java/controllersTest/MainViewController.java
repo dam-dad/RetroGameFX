@@ -9,17 +9,23 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import base.App;
 
 public class MainViewController {
 
     
 	@FXML
-	Pane View;
+	GridPane View;
 	
 	@FXML
 	Button Jugar;
@@ -43,20 +49,22 @@ public class MainViewController {
     }
 
     @FXML
-    void onClickJugar(ActionEvent event) {
-
+    void onClickJugar(ActionEvent event) throws IOException {
+		App.CambiarASeleccion();
+		
     }
 
     @FXML
     void onClickOpciones(ActionEvent event) {
-
+    	App.CambiarAOpciones();
     }
 
     @FXML
     void onClickSalir(ActionEvent event) {
-
+    	Stage stage = (Stage) Salir.getScene().getWindow();
+        stage.close();
     }
-	public Pane getView() {
+	public GridPane getView() {
 		return View;
 	}
 	

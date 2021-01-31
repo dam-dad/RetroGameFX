@@ -1,10 +1,13 @@
 package controllersTest;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import base.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -38,7 +41,7 @@ public class OpcionesViewController implements Initializable {
 
     @FXML
     void butOnVolv(ActionEvent event) {
-
+    	App.CambiarAMain();
     }
 
     @FXML
@@ -52,6 +55,12 @@ public class OpcionesViewController implements Initializable {
 	}
 	public GridPane getView() {
 		return View;
+	}
+	public OpcionesViewController() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Sound.fxml"));
+		loader.setController(this);
+		loader.load();
+		
 	}
 
 }

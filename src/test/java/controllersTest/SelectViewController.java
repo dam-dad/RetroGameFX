@@ -1,10 +1,13 @@
 package controllersTest;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import base.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -88,7 +91,7 @@ public class SelectViewController implements Initializable {
 
     @FXML
     void onVolverAction(ActionEvent event) {
-
+    	App.CambiarAMain();
     }
 
 	public void initialize(URL location, ResourceBundle resources) {
@@ -97,6 +100,12 @@ public class SelectViewController implements Initializable {
 	}
 	public GridPane getView() {
 		return View;
+	}
+	public SelectViewController() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SelectView.fxml"));
+		loader.setController(this);
+		loader.load();
+		
 	}
 
 }
