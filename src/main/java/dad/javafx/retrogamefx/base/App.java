@@ -1,33 +1,32 @@
 package dad.javafx.retrogamefx.base;
 
-import java.net.URISyntaxException;
-
-import java.net.URL;
-
-import dad.javafx.retrogamefx.controllers.MainViewController;
-import dad.javafx.retrogamefx.controllers.OpcionesViewController;
-import dad.javafx.retrogamefx.controllers.SelectViewController;
-import javafx.animation.Transition;
+import dad.javafx.retrogamefx.controllers.ChooseGameController;
+import dad.javafx.retrogamefx.controllers.MainController;
+import dad.javafx.retrogamefx.controllers.SettingsController;
+import dad.javafx.retrogamefx.music.MusicThread;
 import javafx.application.Application;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 
 
 public class App extends Application {
 
 	// Musica
 	private static MusicThread music;
-	private static double volume = 1;
+	private static DoubleProperty volume = new SimpleDoubleProperty(1);
+	
+	// Controladores
+	private MainController controller;
+	private ChooseGameController chooseGameController;
+	private SettingsController settingsController;
+	
 	// Escenas
-	private MainViewController controller;
-	private SelectViewController selectViewController;
-	private OpcionesViewController opcionesViewController;
 	static Scene mainScene;
 	static Scene chooseGameScene;
-	static Scene optionsScene;
+	static Scene settingsScene;
+	
 	public static Stage primaryStage;
 
 	@Override
@@ -35,13 +34,13 @@ public class App extends Application {
 		
 		App.primaryStage = primaryStage;
 		
-		controller = new MainViewController();
-		selectViewController = new SelectViewController();
-		opcionesViewController = new OpcionesViewController();
+		controller = new MainController();
+		chooseGameController = new ChooseGameController();
+		settingsController = new SettingsController();
 
 		mainScene = new Scene(controller.getView(), 600, 400);
-		chooseGameScene = new Scene(selectViewController.getView(), 600, 400);
-		optionsScene = new Scene(opcionesViewController.getView(), 600, 400);
+		chooseGameScene = new Scene(chooseGameController.getView(), 600, 400);
+		settingsScene = new Scene(settingsController.getView(), 600, 400);
 
 		primaryStage.setScene(mainScene);
 		primaryStage.setTitle("RetroGamesFX");
@@ -56,69 +55,43 @@ public class App extends Application {
 	}
 
 	// Cambio de vetana a Main
-	public static void CambiarAMain() {
+	public static void gotToMain() {
 		primaryStage.setScene(mainScene);
 	}
 
 	// Cambio de ventana a Selection
-	public static void CambiarASeleccion() {
+	public static void goToChooseGame() {
 		primaryStage.setScene(chooseGameScene);
 	}
 
 	// Cambio de ventana a Opciones
-	public static void CambiarAOpciones() {
-		primaryStage.setScene(optionsScene);
+	public static void goToSettings() {
+		primaryStage.setScene(settingsScene);
 	}
 
 	// Musica inacabado
-	public static double getVolumenMusica() {
-		return volume;
-	}
 
-	public static void setVolumenMusica(double volumenMusica) {
-		App.volume = volumenMusica;
-	}
 
-	public static void playMusica(String file) {
+	public static void playMusic(String file) {
 		music = new MusicThread(file);
 		music.play();
 	}
 
-	public static void stopMusica() {
+	public static void stopMusic() {
 		// if cambiar a juego
-		music.parar();
+		music.pause();
 	}
 
-}
+	public static final DoubleProperty volumeProperty() {
+		return App.volume;
+	}	
 
-class MusicThread extends Thread {
-	String file;
-	MediaPlayer player;
-
-	public MusicThread(String file) {
-		this.file = file;
+	public static final double getVolume() {
+		return App.volumeProperty().get();
 	}
 
-	public void play() {
-		URL path = getClass().getResource("/sounds/" + file + ".mp3");
-		Media media;
-		try {
-			media = new Media(path.toURI().toString());
-			player = new MediaPlayer(media);
-			player.setVolume(App.getVolumenMusica());
-			player.setCycleCount(Transition.INDEFINITE);
-			player.play();
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void parar() {
-		try {
-			player.stop();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public static final void setVolume(final double volume) {
+		App.volumeProperty().set(volume);
 	}
 
 }

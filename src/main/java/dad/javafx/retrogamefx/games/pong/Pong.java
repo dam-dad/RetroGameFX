@@ -1,20 +1,24 @@
 package dad.javafx.retrogamefx.games.pong;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Random;
+import java.util.ResourceBundle;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Application;
-import javafx.scene.Scene;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class Pong extends Application {
+public class Pong implements Initializable {
 
 	// variables
 	private static final int width = 1900;
@@ -34,24 +38,44 @@ public class Pong extends Application {
 	private int playerOneXPos = 0;
 	private double playerTwoXPos = width - PLAYER_WIDTH;
 
-	public void start(Stage stage) throws Exception {
-		stage.setTitle("P O N G");
+	// view
+	
+	@FXML 
+	private StackPane view;
+	
+	@FXML
+	private Canvas canvas; 
+	
+	public Pong() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Pong.fxml"));
+			loader.setController(this);
+			loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public StackPane getView() {
+		return view;
+	}
 
-		Canvas canvas = new Canvas(width, height);
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 
 		// Frames por segundos
-		Timeline tl = new Timeline(new KeyFrame(Duration.millis(5), e -> run(gc)));
+		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(5), e -> run(gc)));
+		
 		// number of cycles in animation INDEFINITE = repeat indefinitely
-		tl.setCycleCount(Timeline.INDEFINITE);
+		timeline.setCycleCount(Timeline.INDEFINITE);
 
 		// control de raton
 		canvas.setOnMouseMoved(e -> playerOneYPos = e.getY());
-
 		canvas.setOnMouseClicked(e -> gameStarted = true);
-		stage.setScene(new Scene(new StackPane(canvas)));
-		stage.show();
-		tl.play();
+		
+		timeline.play();
 	}
 
 	private void run(GraphicsContext gc) {
@@ -141,7 +165,4 @@ public class Pong extends Application {
 		// 20, 10);
 	}
 
-	public static void main(String[] args) {
-		launch(args);
-	}
 }

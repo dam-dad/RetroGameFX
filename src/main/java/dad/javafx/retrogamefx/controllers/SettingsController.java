@@ -14,7 +14,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 
-public class OpcionesViewController implements Initializable {
+public class SettingsController implements Initializable {
 
     @FXML
     private GridPane View;
@@ -41,7 +41,7 @@ public class OpcionesViewController implements Initializable {
 
     @FXML
     void butOnVolv(ActionEvent event) {
-    	App.CambiarAMain();
+    	App.gotToMain();
     }
 
     @FXML
@@ -56,7 +56,7 @@ public class OpcionesViewController implements Initializable {
 	public GridPane getView() {
 		return View;
 	}
-	public OpcionesViewController() throws IOException {
+	public SettingsController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Sound.fxml"));
 		loader.setController(this);
 		loader.load();

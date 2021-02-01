@@ -13,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
-public class SelectViewController implements Initializable {
+public class ChooseGameController implements Initializable {
 	
 
     @FXML
@@ -91,7 +91,7 @@ public class SelectViewController implements Initializable {
 
     @FXML
     void onVolverAction(ActionEvent event) {
-    	App.CambiarAMain();
+    	App.gotToMain();
     }
 
 	public void initialize(URL location, ResourceBundle resources) {
@@ -101,7 +101,7 @@ public class SelectViewController implements Initializable {
 	public GridPane getView() {
 		return View;
 	}
-	public SelectViewController() throws IOException {
+	public ChooseGameController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SelectView.fxml"));
 		loader.setController(this);
 		loader.load();

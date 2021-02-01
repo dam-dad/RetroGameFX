@@ -21,7 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class MainViewController {
+public class MainController {
 
     
 	@FXML
@@ -50,13 +50,13 @@ public class MainViewController {
 
     @FXML
     void onClickJugar(ActionEvent event) throws IOException {
-		App.CambiarASeleccion();
+		App.goToChooseGame();
 		
     }
 
     @FXML
     void onClickOpciones(ActionEvent event) {
-    	App.CambiarAOpciones();
+    	App.goToSettings();
     }
 
     @FXML
@@ -68,7 +68,7 @@ public class MainViewController {
 		return View;
 	}
 	
-	public MainViewController() throws IOException {
+	public MainController() throws IOException {
 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainView.fxml"));
 	loader.setController(this);
 	loader.load();

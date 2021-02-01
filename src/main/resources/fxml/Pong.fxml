@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
-</StackPane>
 
+<fx:root fx:id="view" prefHeight="480.0" prefWidth="640.0" type="StackPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Canvas fx:id="canvas" height="480.0" width="640.0" />
+      <BorderPane fx:id="hudPane">
+         <top>
+            <HBox spacing="5.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="scoreLabel" text="Score: XXXXX" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+         </top>
+      </BorderPane>
+   </children>
+</fx:root>
