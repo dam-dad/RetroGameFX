@@ -1,4 +1,4 @@
-package Pong;
+package dad.javafx.retrogamefx.games.pong;
 
 public class Main {
 

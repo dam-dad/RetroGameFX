@@ -1,16 +1,16 @@
 @font-face{
     font-family:'ArcadeClassic';
-    src:url('../../Font/ARCADECLASSIC.TTF');
+    src:url('../fonts/ARCADECLASSIC.TTF');
 }
 @font-face{
     font-family:'Karmatic Arcade';
-    src:url('../../Font/ka1.TTF');
+    src:url('../fonts/ka1.TTF');
     
 }
 
 
 .imagen{
-    -fx-background-image:url(../../Images/Fondo.gif);
+    -fx-background-image:url(../images/Fondo.gif);
     -fx-background-size:600px 400px;
     -fx-background-repeat: no-repeat;
 }

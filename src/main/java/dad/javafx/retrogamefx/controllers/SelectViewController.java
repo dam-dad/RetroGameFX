@@ -1,10 +1,10 @@
-package controllersTest;
+package dad.javafx.retrogamefx.controllers;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import base.App;
+import dad.javafx.retrogamefx.base.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

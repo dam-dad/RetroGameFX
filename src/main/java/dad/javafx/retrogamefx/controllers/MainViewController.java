@@ -1,10 +1,11 @@
-package controllersTest;
+package dad.javafx.retrogamefx.controllers;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URI;
 
+import dad.javafx.retrogamefx.base.App;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +20,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import base.App;
 
 public class MainViewController {
 
