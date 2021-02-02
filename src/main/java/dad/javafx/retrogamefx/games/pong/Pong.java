@@ -1,15 +1,13 @@
 package dad.javafx.retrogamefx.games.pong;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import dad.javafx.retrogamefx.games.GameScene;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
@@ -18,7 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Duration;
 
-public class Pong implements Initializable {
+public class Pong extends GameScene {
 
 	// variables
 	private static final int width = 1900;
@@ -38,6 +36,8 @@ public class Pong implements Initializable {
 	private int playerOneXPos = 0;
 	private double playerTwoXPos = width - PLAYER_WIDTH;
 
+	private Timeline timeline;
+	
 	// view
 	
 	@FXML 
@@ -47,17 +47,7 @@ public class Pong implements Initializable {
 	private Canvas canvas; 
 	
 	public Pong() {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Pong.fxml"));
-			loader.setController(this);
-			loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public StackPane getView() {
-		return view;
+		super("/fxml/Pong.fxml");
 	}
 
 	@Override
@@ -66,16 +56,24 @@ public class Pong implements Initializable {
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 
 		// Frames por segundos
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(5), e -> run(gc)));
+		timeline = new Timeline(new KeyFrame(Duration.millis(5), e -> run(gc)));
 		
 		// number of cycles in animation INDEFINITE = repeat indefinitely
 		timeline.setCycleCount(Timeline.INDEFINITE);
 
 		// control de raton
 		canvas.setOnMouseMoved(e -> playerOneYPos = e.getY());
-		canvas.setOnMouseClicked(e -> gameStarted = true);
-		
+		canvas.setOnMouseClicked(e -> gameStarted = true);		
+	}
+
+	@Override
+	public void play() {
 		timeline.play();
+	}
+	
+	@Override
+	public void quit() {
+		timeline.stop();
 	}
 
 	private void run(GraphicsContext gc) {

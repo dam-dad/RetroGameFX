@@ -1,23 +1,23 @@
 @font-face{
-    font-family:'ArcadeClassic';
-    src:url('../fonts/ARCADECLASSIC.TTF');
+    font-family: 'ArcadeClassic';
+    src: url('../fonts/ARCADECLASSIC.TTF');
 }
 @font-face{
-    font-family:'Karmatic Arcade';
-    src:url('../fonts/ka1.TTF');
-    
+    font-family: 'Karmatic Arcade';
+    src: url('../fonts/ka1.TTF');
 }
 
-
-.imagen{
-    -fx-background-image:url(../images/Fondo.gif);
-    -fx-background-size:600px 400px;
+.imagen {
+    -fx-background-image: url(../images/Fondo.gif);
+    -fx-background-size: 600.0px 400.0px;
     -fx-background-repeat: no-repeat;
 }
-.titulo{
+
+.titulo {
 	 -fx-font-family: 'ArcadeClassic';
 }
-.botones{
+
+.botones {
 	-fx-font-family: 'Karmatic Arcade';
-	-margin-left:10%;
+	-margin-left:10.0%;
 }

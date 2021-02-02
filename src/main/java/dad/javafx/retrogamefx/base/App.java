@@ -3,6 +3,7 @@ package dad.javafx.retrogamefx.base;
 import dad.javafx.retrogamefx.controllers.ChooseGameController;
 import dad.javafx.retrogamefx.controllers.MainController;
 import dad.javafx.retrogamefx.controllers.SettingsController;
+import dad.javafx.retrogamefx.games.GameScene;
 import dad.javafx.retrogamefx.music.MusicThread;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
@@ -69,6 +70,11 @@ public class App extends Application {
 		primaryStage.setScene(settingsScene);
 	}
 
+	// Cambio de ventana a Opciones
+	public static void playGame(GameScene gameScene) {
+		primaryStage.setScene(gameScene);
+	}
+	
 	// Musica inacabado
 
 

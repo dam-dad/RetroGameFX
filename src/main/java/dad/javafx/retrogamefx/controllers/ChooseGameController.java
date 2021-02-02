@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dad.javafx.retrogamefx.base.App;
+import dad.javafx.retrogamefx.games.pong.Pong;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,6 +50,19 @@ public class ChooseGameController implements Initializable {
     @FXML
     private Text puntosText;
 
+	public ChooseGameController() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChooseGameView.fxml"));
+		loader.setController(this);
+		loader.load();
+		
+	}
+	
+
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
+	}
+	
     @FXML
     void onComprar1Action(ActionEvent event) {
 
@@ -71,7 +85,9 @@ public class ChooseGameController implements Initializable {
 
     @FXML
     void onJugar1Action(ActionEvent event) {
-
+    	Pong game = new Pong();
+    	App.playGame(game);
+    	game.play();
     }
 
     @FXML
@@ -93,19 +109,10 @@ public class ChooseGameController implements Initializable {
     void onVolverAction(ActionEvent event) {
     	App.gotToMain();
     }
-
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	public GridPane getView() {
 		return View;
 	}
-	public ChooseGameController() throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SelectView.fxml"));
-		loader.setController(this);
-		loader.load();
-		
-	}
+
 
 }
