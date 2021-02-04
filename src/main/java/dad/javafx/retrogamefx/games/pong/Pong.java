@@ -5,20 +5,20 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import dad.javafx.retrogamefx.games.GameScene;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.AnimationTimer;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
-import javafx.util.Duration;
 
 public class Pong extends GameScene {
 
-	// variables
+	// variables (objetos)
 	private static final int width = 800;
 	private static final int height = 600;
 	private static final int PLAYER_HEIGHT = 200;
@@ -30,15 +30,25 @@ public class Pong extends GameScene {
 	private double playerTwoYPos = height / 2;
 	private double ballXPos = width / 2;
 	private double ballYPos = height / 2;
-	private int scoreP1 = 0;
-	private int scoreP2 = 0;
 	private boolean gameStarted;
 	private int playerOneXPos = 0;
 	private double playerTwoXPos = width - PLAYER_WIDTH;
 
-	private Timeline timeline;
+//	private Timeline timeline;
+	private AnimationTimer timer;
+	
+	// model
+	
+	private IntegerProperty player1Score;
+	private IntegerProperty player2Score;
 	
 	// view
+	
+	@FXML
+	private Label player1ScoreLabel;
+	
+	@FXML
+	private Label player2ScoreLabel;
 	
 	@FXML 
 	private StackPane view;
@@ -52,15 +62,25 @@ public class Pong extends GameScene {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		player1Score = new SimpleIntegerProperty(0);
+		player2Score = new SimpleIntegerProperty(0);
+		
+		player1ScoreLabel.textProperty().bind(player1Score.asString());
+		player2ScoreLabel.textProperty().bind(player2Score.asString());
 
 		GraphicsContext gc = canvas.getGraphicsContext2D();
 
 		// Frames por segundos
-		timeline = new Timeline(new KeyFrame(Duration.millis(5), e -> run(gc)));
+		timer = new AnimationTimer() {
+			public void handle(long now) {
+				run(gc);
+				// update() --- actualizar elementos del juego 
+				// collisions() --- detectar colisiones
+				// redner() --- renderizado (pintar) --> gc
+			}
+		};
 		
-		// number of cycles in animation INDEFINITE = repeat indefinitely
-		timeline.setCycleCount(Timeline.INDEFINITE);
-
 		// control de raton
 		canvas.setOnMouseMoved(e -> playerOneYPos = e.getY()-(PLAYER_HEIGHT/2));
 		canvas.setOnMouseClicked(e -> gameStarted = true);		
@@ -68,12 +88,12 @@ public class Pong extends GameScene {
 
 	@Override
 	public void play() {
-		timeline.play();
+		timer.start();
 	}
 	
 	@Override
 	public void quit() {
-		timeline.stop();
+		timer.stop();
 	}
 
 	private void run(GraphicsContext gc) {
@@ -102,9 +122,9 @@ public class Pong extends GameScene {
 
 		} else {
 			// texto inicio
-			gc.setStroke(Color.WHITE);
-			gc.setTextAlign(TextAlignment.CENTER);
-			gc.strokeText("Click para empezar", width / 2, height / 2);
+//			gc.setStroke(Color.WHITE);
+//			gc.setTextAlign(TextAlignment.CENTER);
+//			gc.strokeText("Click para empezar", width / 2, height / 2);
 
 			// Reset posicion pelota al inicio
 			ballXPos = width / 2;
@@ -121,13 +141,13 @@ public class Pong extends GameScene {
 
 		// Punto para jugador 2
 		if (ballXPos < playerOneXPos - PLAYER_WIDTH) {
-			scoreP2++;
+			player2Score.set(player2Score.get() + 1);
 			gameStarted = false;
 		}
 
 		// Punto para jugador 1
 		if (ballXPos > playerTwoXPos + PLAYER_WIDTH) {
-			scoreP1++;
+			player1Score.set(player1Score.get() + 1);
 			gameStarted = false;
 		}
 
@@ -148,7 +168,7 @@ public class Pong extends GameScene {
 		}
 
 		// score
-		gc.fillText(scoreP1 + "\t\t\t\t\t\t\t\t\t\t\t" + scoreP2, width / 2, 100);
+//		gc.fillText(scoreP1 + "\t\t\t\t\t\t\t\t\t\t\t" + scoreP2, width / 2, 100);
 
 		gc.setFill(Color.RED); // p1
 		// gc.fillOval(playerTwoXPos, playerTwoYPos, PLAYER_WIDTH, PLAYER_HEIGHT);
