@@ -19,10 +19,10 @@ import javafx.util.Duration;
 public class Pong extends GameScene {
 
 	// variables
-	private static final int width = 1900;
-	private static final int height = 1000;
+	private static final int width = 800;
+	private static final int height = 600;
 	private static final int PLAYER_HEIGHT = 200;
-	private static final int PLAYER_WIDTH = 20;
+	private static final int PLAYER_WIDTH = 10;
 	private static final double BALL_R = 40;
 	private int ballYSpeed = 4;
 	private int ballXSpeed = 4;
@@ -62,7 +62,7 @@ public class Pong extends GameScene {
 		timeline.setCycleCount(Timeline.INDEFINITE);
 
 		// control de raton
-		canvas.setOnMouseMoved(e -> playerOneYPos = e.getY());
+		canvas.setOnMouseMoved(e -> playerOneYPos = e.getY()-(PLAYER_HEIGHT/2));
 		canvas.setOnMouseClicked(e -> gameStarted = true);		
 	}
 

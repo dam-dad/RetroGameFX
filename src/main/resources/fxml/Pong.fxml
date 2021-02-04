@@ -7,10 +7,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="view" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane fx:id="view" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Canvas fx:id="canvas" height="480.0" width="640.0" />
-      <BorderPane fx:id="hudPane">
+      <Canvas fx:id="canvas" height="600.0" width="800.0" />
+      <BorderPane fx:id="hudPane" mouseTransparent="true">
          <top>
             <HBox spacing="5.0" BorderPane.alignment="CENTER">
                <children>

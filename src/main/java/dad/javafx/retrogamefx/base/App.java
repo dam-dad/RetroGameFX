@@ -70,7 +70,7 @@ public class App extends Application {
 		primaryStage.setScene(settingsScene);
 	}
 
-	// Cambio de ventana a Opciones
+	// Cambio de ventana de Juego
 	public static void playGame(GameScene gameScene) {
 		primaryStage.setScene(gameScene);
 	}
