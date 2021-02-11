@@ -74,16 +74,20 @@ public class Pong extends GameScene {
 		// Frames por segundos
 		timer = new AnimationTimer() {
 			public void handle(long now) {
-				run(gc);
+				run();
 				// update() --- actualizar elementos del juego 
+				update();
 				// collisions() --- detectar colisiones
+				collision();
 				// redner() --- renderizado (pintar) --> gc
+				render(gc);
 			}
 		};
 		
 		// control de raton
 		canvas.setOnMouseMoved(e -> playerOneYPos = e.getY()-(PLAYER_HEIGHT/2));
-		canvas.setOnMouseClicked(e -> gameStarted = true);		
+		canvas.setOnMouseClicked(e -> gameStarted = true);	
+		
 	}
 
 	@Override
@@ -95,16 +99,33 @@ public class Pong extends GameScene {
 	public void quit() {
 		timer.stop();
 	}
-
-	private void run(GraphicsContext gc) {
+	private void render(GraphicsContext gc) {
+		GraphicsContext text=gc;
+		GraphicsContext ball=gc;
+		GraphicsContext player1=gc;
+		GraphicsContext player2=gc;
 		// set color fondo
 		gc.setFill(Color.BLACK);
 		gc.fillRect(0, 0, width, height);
-
+		
 		// set texto
-		gc.setFill(Color.WHITE);
-		gc.setFont(Font.font(25));
+		text.setFill(Color.WHITE);
+		text.setFont(Font.font(25));
+		// Creando pelota
+		ball.setFill(Color.WHITE);
+		ball.fillOval(ballXPos, ballYPos, BALL_R, BALL_R);
+		//Render
+		player1.setFill(Color.RED); // p1
+		player1.fillRect(playerTwoXPos, playerTwoYPos, PLAYER_WIDTH, PLAYER_HEIGHT);// palas
 
+		player2.setFill(Color.AQUA);// p2
+		player2.fillRect(playerOneXPos, playerOneYPos, PLAYER_WIDTH, PLAYER_HEIGHT);// palas
+				
+	}
+
+
+	private void run() {
+		
 		if (gameStarted) {
 			// Movimiento de la pelota
 			ballXPos += ballXSpeed;
@@ -117,40 +138,24 @@ public class Pong extends GameScene {
 					// += 5: playerTwoYPos - 5 dificil: playerTwoYPos += 10: playerTwoYPos - 10
 				playerTwoYPos = ballYPos > playerTwoYPos + PLAYER_HEIGHT / 2 ? playerTwoYPos += 5 : playerTwoYPos - 5;
 			}
-			// Creando pelota
-			gc.fillOval(ballXPos, ballYPos, BALL_R, BALL_R);
-
 		} else {
 			// texto inicio
-//			gc.setStroke(Color.WHITE);
-//			gc.setTextAlign(TextAlignment.CENTER);
-//			gc.strokeText("Click para empezar", width / 2, height / 2);
 
 			// Reset posicion pelota al inicio
 			ballXPos = width / 2;
 			ballYPos = height / 2;
 
 			// Reseteo de speed de la pelota
-			ballXSpeed = new Random().nextInt(4) == 0 ? 1 : -1;
-			ballYSpeed = new Random().nextInt(4) == 0 ? 1 : -1;
+			ballXSpeed = new Random().nextInt(20) == 0 ? 1 : -1;
+			ballYSpeed = new Random().nextInt(20) == 0 ? 1 : -1;
 		}
 
 		// ball esta dentro del canvas
 		if (ballYPos > height || ballYPos < 0)
 			ballYSpeed *= -1;
-
-		// Punto para jugador 2
-		if (ballXPos < playerOneXPos - PLAYER_WIDTH) {
-			player2Score.set(player2Score.get() + 1);
-			gameStarted = false;
 		}
 
-		// Punto para jugador 1
-		if (ballXPos > playerTwoXPos + PLAYER_WIDTH) {
-			player1Score.set(player1Score.get() + 1);
-			gameStarted = false;
-		}
-
+	private void collision() {
 		// aumenta la velocidad despues de chocar y cambio de dirreccion
 		if (((ballXPos + BALL_R > playerTwoXPos) && ballYPos >= playerTwoYPos
 				&& ballYPos <= playerTwoYPos + PLAYER_HEIGHT)) {
@@ -166,21 +171,21 @@ public class Pong extends GameScene {
 			ballXSpeed *= -1; // Cambia de dirrecion la bola
 			ballYSpeed *= 1; // la tira al lado opuesto osea si viene por arriba la dispara por debajo
 		}
+	}
 
-		// score
-//		gc.fillText(scoreP1 + "\t\t\t\t\t\t\t\t\t\t\t" + scoreP2, width / 2, 100);
+	private void update() {
+		
+		// Punto para jugador 2
+		if (ballXPos < playerOneXPos - PLAYER_WIDTH) {
+			player2Score.set(player2Score.get() + 1);
+			gameStarted = false;
+		}
 
-		gc.setFill(Color.RED); // p1
-		// gc.fillOval(playerTwoXPos, playerTwoYPos, PLAYER_WIDTH, PLAYER_HEIGHT);
-		// gc.drawImage(imag, playerTwoXPos, playerTwoYPos, PLAYER_WIDTH,
-		// PLAYER_HEIGHT); intento de poner cosas
-		gc.fillRect(playerTwoXPos, playerTwoYPos, PLAYER_WIDTH, PLAYER_HEIGHT);// palas
-		// gc.fillRoundRect(playerTwoXPos, playerTwoYPos, PLAYER_WIDTH, PLAYER_HEIGHT,
-		// 10, 20);
-		gc.setFill(Color.AQUA);// p2
-		gc.fillRect(playerOneXPos, playerOneYPos, PLAYER_WIDTH, PLAYER_HEIGHT);// palas
-		// gc.fillRoundRect(playerOneXPos, playerOneYPos, PLAYER_WIDTH, PLAYER_HEIGHT,
-		// 20, 10);
+		// Punto para jugador 1
+		if (ballXPos > playerTwoXPos + PLAYER_WIDTH) {
+			player1Score.set(player1Score.get() + 1);
+			gameStarted = false;
+		}
 	}
 
 }
