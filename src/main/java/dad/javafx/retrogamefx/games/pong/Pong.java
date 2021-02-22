@@ -17,15 +17,14 @@ import javafx.scene.paint.Color;
 public class Pong extends GameScene {
 
 	// variables (objetos)
-	private static final int width = 800;
-	private static final int height = 600;
-	private static final int PLAYER_HEIGHT = 200;
-	private static final int PLAYER_WIDTH = 10;
+	private static final int WORLD_WIDTH = 800;
+	private static final int WORLD_HEIGHT = 600;
+	
 	private static final double BALL_R = 40;
+	
 	private int ballYSpeed = 4;
 	private int ballXSpeed = 4;
-	private double playerOneYPos = height / 2;
-	private double playerTwoYPos = height / 2;
+	
 	private double ballXPos = width / 2;
 	private double ballYPos = height / 2;
 	private boolean gameStarted;
@@ -34,8 +33,10 @@ public class Pong extends GameScene {
 
 	// model
 
-	private IntegerProperty player1Score;
-	private IntegerProperty player2Score;
+	private Player player;
+	private Player cpu;
+	private Background background;
+	private Ball ball;
 
 	// view
 
@@ -57,54 +58,72 @@ public class Pong extends GameScene {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		background = new Background(Color.BLACK);
+		background.setBounds(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
 
-		player1Score = new SimpleIntegerProperty(0);
-		player2Score = new SimpleIntegerProperty(0);
+		player = new Player(Color.RED);
+		player.setBounds(0, WORLD_HEIGHT / 2, 10, 200);
+		
+		cpu = new Player(Color.AQUA);
+		cpu.setBounds(WORLD_WIDTH - 10, WORLD_HEIGHT / 2, 10, 200);
+		
+		ball = new Ball();
+		ball.setX(WORLD_WIDTH / 2);
+		ball.setY(WORLD_HEIGHT / 2);
+		ball.setRadio(40);
 
-		player1ScoreLabel.textProperty().bind(player1Score.asString());
-		player2ScoreLabel.textProperty().bind(player2Score.asString());
+		player1ScoreLabel.textProperty().bind(player.scoreProperty().asString());
+		player2ScoreLabel.textProperty().bind(cpu.scoreProperty().asString());
 
 		// control de raton
-		canvas.setOnMouseMoved(e -> playerOneYPos = e.getY() - (PLAYER_HEIGHT / 2));
+		canvas.setOnMouseMoved(e -> player.setY(e.getY() - player.getHeight() / 2));
 		canvas.setOnMouseClicked(e -> gameStarted = true);
 
 	}
 
 	@Override
 	protected void gameLoop(long now) {
-		run();
-		// update() --- actualizar elementos del juego
+
+		// actualizar elementos del juego
 		update();
-		// collisions() --- detectar colisiones
+		
+		// detectar colisiones
 		collision();
-		// redner() --- renderizado (pintar) --> gc
+		
+		// renderizado (pintar)
 		render(canvas.getGraphicsContext2D());
+		
 	}
 
 	private void render(GraphicsContext gc) {
 
-		GraphicsContext ball = gc;
-		GraphicsContext player1 = gc;
-		GraphicsContext player2 = gc;
-		
-		// set color fondo
-		gc.setFill(Color.BLACK);
-		gc.fillRect(0, 0, width, height);
-
-		// Creando pelota
-		ball.setFill(Color.WHITE);
-		ball.fillOval(ballXPos, ballYPos, BALL_R, BALL_R);
-		
-		// Render
-		player1.setFill(Color.RED); // p1
-		player1.fillRect(playerTwoXPos, playerTwoYPos, PLAYER_WIDTH, PLAYER_HEIGHT);// palas
-
-		player2.setFill(Color.AQUA);// p2
-		player2.fillRect(playerOneXPos, playerOneYPos, PLAYER_WIDTH, PLAYER_HEIGHT);// palas
+		background.render(gc);
+		ball.render(gc);
+		player.render(gc);
+		cpu.render(gc);
 
 	}
 
-	private void run() {
+	private void collision() {
+		// aumenta la velocidad despues de chocar y cambio de dirreccion
+		if (((ballXPos + BALL_R > playerTwoXPos) && ballYPos >= playerTwoYPos
+				&& ballYPos <= playerTwoYPos + PLAYER_HEIGHT)) {
+			ballYSpeed += 1 * Math.signum(ballYSpeed);
+			ballXSpeed += 1 * Math.signum(ballXSpeed);
+			ballXSpeed *= -1;
+			ballYSpeed *= 1;
+		}
+		if (((ballXPos < playerOneXPos + PLAYER_WIDTH) && ballYPos >= playerOneYPos
+				&& ballYPos <= playerOneYPos + PLAYER_HEIGHT)) {
+			ballYSpeed += 1 * Math.signum(ballYSpeed);
+			ballXSpeed += 1 * Math.signum(ballXSpeed);
+			ballXSpeed *= -1; // Cambia de dirrecion la bola
+			ballYSpeed *= 1; // la tira al lado opuesto osea si viene por arriba la dispara por debajo
+		}
+	}
+
+	private void update() {
 
 		if (gameStarted) {
 			// Movimiento de la pelota
@@ -133,28 +152,7 @@ public class Pong extends GameScene {
 		// ball esta dentro del canvas
 		if (ballYPos > height || ballYPos < 0)
 			ballYSpeed *= -1;
-	}
-
-	private void collision() {
-		// aumenta la velocidad despues de chocar y cambio de dirreccion
-		if (((ballXPos + BALL_R > playerTwoXPos) && ballYPos >= playerTwoYPos
-				&& ballYPos <= playerTwoYPos + PLAYER_HEIGHT)) {
-			ballYSpeed += 1 * Math.signum(ballYSpeed);
-			ballXSpeed += 1 * Math.signum(ballXSpeed);
-			ballXSpeed *= -1;
-			ballYSpeed *= 1;
-		}
-		if (((ballXPos < playerOneXPos + PLAYER_WIDTH) && ballYPos >= playerOneYPos
-				&& ballYPos <= playerOneYPos + PLAYER_HEIGHT)) {
-			ballYSpeed += 1 * Math.signum(ballYSpeed);
-			ballXSpeed += 1 * Math.signum(ballXSpeed);
-			ballXSpeed *= -1; // Cambia de dirrecion la bola
-			ballYSpeed *= 1; // la tira al lado opuesto osea si viene por arriba la dispara por debajo
-		}
-	}
-
-	private void update() {
-
+		
 		// Punto para jugador 2
 		if (ballXPos < playerOneXPos - PLAYER_WIDTH) {
 			player2Score.set(player2Score.get() + 1);
