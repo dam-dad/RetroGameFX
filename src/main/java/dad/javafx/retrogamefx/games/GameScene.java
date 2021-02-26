@@ -12,12 +12,14 @@ public abstract class GameScene extends Scene implements Initializable {
 	
 	private AnimationTimer timer;
 
-	public GameScene(String fxml) {
-		super(new Pane());
+	public GameScene(String fxml, double width, double height) {
+		super(new Pane(), width, height);
 		loadUI(fxml);
 		timer = new AnimationTimer() {
+			private long last = System.nanoTime();
 			public void handle(long now) {
-				gameLoop(now);
+				gameLoop((now - last) / 1000000000.0);
+				last = now;
 			}
 		};
 	}
@@ -30,7 +32,7 @@ public abstract class GameScene extends Scene implements Initializable {
 		timer.stop();
 	}
 	
-	protected abstract void gameLoop(long now);
+	protected abstract void gameLoop(double diff);
 	
 	private void loadUI(String fxml) {
 		try {

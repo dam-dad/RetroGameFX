@@ -1,30 +1,22 @@
 package dad.javafx.retrogamefx.games.pong;
 
 import dad.javafx.retrogamefx.games.Sprite;
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Shape;
 
 public class Ball extends Sprite {
 
-	private double speed = 4.0;
+	private Point2D direction;
+	private double speed = 500.0;
 	private Color color;
 	private double radio;
 
 	public Ball() {
 		super();
 		this.color = Color.WHITE;
-	}
-
-	@Override
-	public void render(GraphicsContext gc) {
-		gc.setFill(color);
-		gc.fillOval(getX(), getY(), getWidth(), getHeight());
-	}
-
-	@Override
-	public void update(long diff) {
-		// TODO Auto-generated method stub
-
 	}
 
 	public double getSpeed() {
@@ -45,17 +37,47 @@ public class Ball extends Sprite {
 		return radio;
 	}
 
-	public boolean checkCollision(Player player) {
-		return (((getX() + getRadio() > player.getX() + player.getWidth()) && getY() >= player.getY()
-				&& getY() <= player.getY() + player.getHeight()));
+	public Point2D getDirection() {
+		return direction;
 	}
 
-	public void collision(Player player) {
-		if (checkCollision(player)) {
-			setX(getSpeed() + 1 * Math.signum(getSpeed()));
-			setY(getSpeed() + 1 * Math.signum(getSpeed()));
-			setX(getX() * -1);
-			// setY(getY()*1);
+	public void setDirection(Point2D direction) {
+		this.direction = direction;
+	}
+	
+	@Override
+	public Shape getShape() {
+		return new Ellipse(getX(), getY(), getRadio(), getRadio());
+	}
+
+	public void checkCollision(Sprite sprite) {
+		if (intersects(sprite)) {
+			
+			if (sprite instanceof Player) {
+				System.out.println("colisión con player");
+				setDirection(new Point2D(-getDirection().getX(), getDirection().getY()));
+				setSpeed(getSpeed() + 1);
+			}
+			else if (sprite instanceof Wall) {
+				System.out.println("colisión con muro");
+				setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
+			}
+
+			
 		}
+	}
+
+	@Override
+	public void render(GraphicsContext gc) {
+		gc.setFill(color);
+		gc.fillOval(getX() - getRadio(), getY() - getRadio(), getWidth(), getHeight());
+	}
+
+	@Override
+	public void update(double diff) {
+
+		setX(getX() + direction.getX() * getSpeed() * diff);
+		setY(getY() + direction.getY() * getSpeed() * diff);
+
 	}
 }

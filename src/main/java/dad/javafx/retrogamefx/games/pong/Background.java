@@ -14,7 +14,7 @@ public class Background extends Sprite {
 	}
 
 	@Override
-	public void update(long diff) {}
+	public void update(double diff) {}
 
 	@Override
 	public void render(GraphicsContext gc) {

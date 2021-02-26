@@ -23,10 +23,7 @@ public class Player extends Sprite {
 	}
 
 	@Override
-	public void update(long diff) {
-		// TODO Auto-generated method stub
-
-	}
+	public void update(double diff) {}
 
 	public Color getColor() {
 		return color;

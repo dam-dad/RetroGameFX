@@ -5,9 +5,8 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import dad.javafx.retrogamefx.games.GameScene;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
@@ -17,11 +16,8 @@ import javafx.scene.paint.Color;
 public class Pong extends GameScene {
 
 	// variables (objetos)
-	private static final int WORLD_WIDTH = 800;
-	private static final int WORLD_HEIGHT = 600;
 	private static final double BALL_R = 20;
 	private boolean gameStarted;
-	
 
 	// model
 
@@ -29,6 +25,7 @@ public class Pong extends GameScene {
 	private Player cpu;
 	private Background background;
 	private Ball ball;
+	private Wall topWall, bottomWall;
 
 	// view
 
@@ -45,25 +42,31 @@ public class Pong extends GameScene {
 	private Canvas canvas;
 
 	public Pong() {
-		super("/fxml/Pong.fxml");
+		super("/fxml/Pong.fxml", 800, 600);
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		background = new Background(Color.BLACK);
-		background.setBounds(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
+		background.setBounds(0, 0, getWidth(), getHeight());
+		
+		topWall = new Wall();
+		topWall.setBounds(0, -10, getWidth(), 10);
+
+		bottomWall = new Wall();
+		bottomWall.setBounds(0, getHeight(), getWidth(), getHeight() + 10);
+
+		ball = new Ball();
+		ball.setX(getWidth() / 2);
+		ball.setY(getHeight() / 2);
+		ball.setRadio(BALL_R);
 
 		player = new Player(Color.RED);
-		player.setBounds(0, WORLD_HEIGHT / 2, 10, 200);
+		player.setBounds(0, getHeight() / 2, 10, 200);
 		
-		cpu = new Player(Color.AQUA);
-		cpu.setBounds(WORLD_WIDTH - 10, WORLD_HEIGHT / 2, 10, 200);
-		
-		ball = new Ball();
-		ball.setX(WORLD_WIDTH / 2);
-		ball.setY(WORLD_HEIGHT / 2);
-		ball.setRadio(BALL_R);
+		cpu = new CPU(Color.AQUA, ball, this);
+		cpu.setBounds(getWidth() - 10, getHeight() / 2, 10, 200);
 
 		player1ScoreLabel.textProperty().bind(player.scoreProperty().asString());
 		player2ScoreLabel.textProperty().bind(cpu.scoreProperty().asString());
@@ -75,10 +78,10 @@ public class Pong extends GameScene {
 	}
 
 	@Override
-	protected void gameLoop(long now) {
+	protected void gameLoop(double diff) {
 
 		// actualizar elementos del juego
-		update();
+		update(diff);
 		
 		// detectar colisiones
 		collision();
@@ -98,65 +101,61 @@ public class Pong extends GameScene {
 	}
 
 	private void collision() {
+		
 		// aumenta la velocidad despues de chocar y cambio de dirreccion
-		ball.collision(player);
-		ball.collision(cpu);
+		ball.checkCollision(player);
+		ball.checkCollision(cpu);
+		ball.checkCollision(topWall);
+		ball.checkCollision(bottomWall);
+		
 	}
 
-	private void update() {
+	private void update(double diff) {
 
 		if (gameStarted) {
-			// Movimiento de la pelota
-			ball.setX(ball.getX()+ball.getSpeed());
-			ball.setY(ball.getY()+ball.getSpeed());
+
+			ball.update(diff);
+			cpu.update(diff);
+			player.update(diff);
 
 			// seguimiento de la pelota IA
-			if (ball.getX() < WORLD_WIDTH - WORLD_WIDTH / 4) {
-				cpu.setY(ball.getY() - cpu.getHeight() / 2) ;
-			} else {// dificultad easy: playerTwoYPos += 1: playerTwoYPos - 1 media: playerTwoYPos
-					// += 5: playerTwoYPos - 5 dificil: playerTwoYPos += 10: playerTwoYPos - 10
-				if(ball.getY()> cpu.getY() + cpu.getHeight() / 2) {
-					 cpu.setY(cpu.getY()+5);
-				}else {
-					cpu.setY(cpu.getY()-5);
-				}
+//			if (ball.getX() < getWidth() - getWidth() / 4) {
+//				cpu.setY(ball.getY() - cpu.getHeight() / 2) ;
+//			} else {// dificultad easy: playerTwoYPos += 1: playerTwoYPos - 1 media: playerTwoYPos
+//					// += 5: playerTwoYPos - 5 dificil: playerTwoYPos += 10: playerTwoYPos - 10
+//				if(ball.getY()> cpu.getY() + cpu.getHeight() / 2) {
+//					 cpu.setY(cpu.getY()+5);
+//				}else {
+//					cpu.setY(cpu.getY()-5);
+//				}
+//			}
+			
+			// Punto para cpu (pelota se sale por la derecha)
+			if (ball.getX() > getWidth()) {
+				cpu.setScore(cpu.getScore() + 1);
+				gameStarted = false;
 			}
+
+			// Punto para player (pelota se sale por la izquierda)
+			if (ball.getX() < 0) {
+				player.setScore(player.getScore() + 1);
+				gameStarted = false;
+			}
+			
 		} else {
 			// texto inicio
 
 			// Reset posicion pelota al inicio
-			ball.setX(WORLD_WIDTH / 2);
-			ball.setY(WORLD_HEIGHT / 2);
-			
-			// Reseteo de speed de la pelota
-			//Revisar posible fallo
-			//ball.setSpeed(new Random().nextInt(20) == 0 ? 1 : -1); 
-			
-			if(new Random().nextInt(20)== 0){
-				ball.setSpeed(1);
-				
-			}else {
-				ball.setSpeed(-1);
+			ball.setX(getWidth() / 2);
+			ball.setY(getWidth() / 2);
+			ball.setDirection(new Point2D(1.0, -1.0));			
+			if(new Random().nextBoolean()){
+				ball.setSpeed(ball.getSpeed() * -1);
 			}
 				
 		}
 
-		// ball esta dentro del canvas
-		if (ball.getY() > WORLD_HEIGHT || ball.getY() < 0)
-			ball.setSpeed(ball.getSpeed()*-1);//Esto esta de prueba xD
-		//if (ball.getX() > WORLD_WIDTH || ball.getX() < 0)
-			
-		// Punto para jugador 2
-		if (ball.getX() < player.getX() - cpu.getWidth()) {
-			cpu.setScore(cpu.getScore() + 1);
-			gameStarted = false;
-		}
 
-		// Punto para jugador 1
-		if (ball.getX() > cpu.getX() + player.getWidth()) {
-			player.setScore(player.getScore() + 1);
-			gameStarted = false;
-		}
 	}
 
 }
