@@ -130,15 +130,15 @@ public class Pong extends GameScene {
 //				}
 //			}
 			
-			// Punto para cpu (pelota se sale por la derecha)
-			if (ball.getX() > getWidth()) {
-				cpu.setScore(cpu.getScore() + 1);
+			// Punto para player (pelota se sale por la derecha)
+			if (ball.getX() > cpu.getX()) {
+				player.setScore(player.getScore() + 1);
 				gameStarted = false;
 			}
 
-			// Punto para player (pelota se sale por la izquierda)
-			if (ball.getX() < 0) {
-				player.setScore(player.getScore() + 1);
+			// Punto para cpu (pelota se sale por la izquierda)
+			if (ball.getX() < player.getX()) {
+				cpu.setScore(cpu.getScore() + 1);
 				gameStarted = false;
 			}
 			

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dad.javafx.retrogamefx.base.App;
+import dad.javafx.retrogamefx.games.brickbreaker.BrickBreaker;
 import dad.javafx.retrogamefx.games.pong.Pong;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -92,7 +93,9 @@ public class ChooseGameController implements Initializable {
 
     @FXML
     void onJugar2Action(ActionEvent event) {
-
+    	BrickBreaker game = new BrickBreaker();
+    	App.playGame(game);
+    	game.play();
     }
 
     @FXML
