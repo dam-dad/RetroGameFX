@@ -38,5 +38,8 @@ public class Ball extends Sprite {
 		setWidth(radio * 2);
 		setHeight(radio * 2);
 	}
+	public double getRadio(double radio) {
+		return radio;
+	}
 
 }
