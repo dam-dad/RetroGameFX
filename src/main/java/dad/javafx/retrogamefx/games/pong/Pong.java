@@ -99,24 +99,8 @@ public class Pong extends GameScene {
 
 	private void collision() {
 		// aumenta la velocidad despues de chocar y cambio de dirreccion
-		if (((ball.getX() + ball.getRadio(BALL_R) > cpu.getX() + cpu.getWidth()) && ball.getY() >= cpu.getY()
-				&& ball.getY() <= cpu.getY() + cpu.getHeight())) {
-			ball.setX(ball.getSpeed()+1* Math.signum(ball.getSpeed()));
-			ball.setY(ball.getSpeed()+1* Math.signum(ball.getSpeed()));
-			ball.setX(ball.getX()*-1);
-			ball.setY(ball.getY()*1);
-		}
-		if (((ball.getX() + ball.getRadio(BALL_R)< player.getX() + player.getWidth()) && ball.getY() >= player.getY()
-				&& ball.getY() <= player.getY() + player.getHeight())) {
-			ball.setX(ball.getSpeed()+1* Math.signum(ball.getSpeed()));
-			ball.setY(ball.getSpeed()+1* Math.signum(ball.getSpeed()));
-			ball.setX(ball.getX()*-1);
-			ball.setY(ball.getY()*1);
-			//ballYSpeed += 1 * Math.signum(ballYSpeed);
-			//ballXSpeed += 1 * Math.signum(ballXSpeed);
-			//ballXSpeed *= -1; // Cambia de dirrecion la bola
-			//ballYSpeed *= 1; // la tira al lado opuesto osea si viene por arriba la dispara por debajo
-		}
+		ball.collision(player);
+		ball.collision(cpu);
 	}
 
 	private void update() {
