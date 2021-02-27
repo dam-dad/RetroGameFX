@@ -64,18 +64,18 @@ public class Ball extends Sprite {
 				System.out.println("colisión con muro");
 				setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
 			}
-			else if (sprite instanceof Bricks) {
-				System.out.println("colisión con brick");
-				// Choques laterales
-				if(){
-					setDirection(new Point2D(-getDirection().getX(), getDirection().getY()));
-				}
-				// Choques verticales
-				else if(){
-					setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
-				}
-				
-			}
+//			else if (sprite instanceof Bricks) {
+//				System.out.println("colisión con brick");
+//				// Choques laterales
+//				if(){
+//					setDirection(new Point2D(-getDirection().getX(), getDirection().getY()));
+//				}
+//				// Choques verticales
+//				else if(){
+//					setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
+//				}
+//				
+//			}
 		}
 	}
 

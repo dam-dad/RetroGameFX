@@ -10,6 +10,7 @@ public class Player extends Sprite {
 
 	private Color color;
 	private IntegerProperty score = new SimpleIntegerProperty(0);
+	private IntegerProperty lives = new SimpleIntegerProperty(0);
 
 	public Player(Color color) {
 		super();
@@ -43,6 +44,18 @@ public class Player extends Sprite {
 
 	public final void setScore(final int score) {
 		this.scoreProperty().set(score);
+	}
+	
+	public final IntegerProperty livesProperty() {
+		return this.lives;
+	}
+	
+	public final int getLives() {
+		return this.livesProperty().get();
+	}
+
+	public final void setLives(final int lives) {
+		this.livesProperty().set(lives);
 	}
 
 }

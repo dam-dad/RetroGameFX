@@ -42,6 +42,9 @@ public class BrickBreaker extends GameScene{
 
     @FXML
     private Label player1ScoreLabel;
+    
+    @FXML
+    private Label player1LivesLabel;
 	
 	public BrickBreaker() {
 		super("/fxml/BrickBreaker.fxml", 800, 600);
@@ -76,6 +79,7 @@ public class BrickBreaker extends GameScene{
 		//Añadir mapeo de bricks
 		
 		player1ScoreLabel.textProperty().bind(player.scoreProperty().asString());
+		player1LivesLabel.textProperty().bind(player.livesProperty().asString());
 		
 		// control de raton
 		canvas.setOnMouseMoved(e -> player.setX(e.getX() - player.getWidth() / 2));
@@ -114,7 +118,7 @@ private void collision() {
 		ball.checkCollision(rightWall);
 		//-----------------------------
 		
-		ball.checkCollision(brick);              //Implementar Bricks		
+		//ball.checkCollision(brick);              //Implementar Bricks		
 	}
 private void update(double diff) {
 
@@ -126,6 +130,12 @@ private void update(double diff) {
 			//				player.setScore(player.getScore() + 1);
 			//				gameStarted = false;
 					//	}
+			
+			//Player pierde vida(revisar expresion e intentar optimizar)
+			 if (ball.getY()> (player.getY()+player.getHeight()) && ball.getX() != player.getX()+(player.getWidth())) {
+				 player.setLives(player.getLives()-1);
+				 gameStarted = false; 
+			 }
 		}else {
 			// texto inicio
 

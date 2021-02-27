@@ -23,11 +23,6 @@
                         <Insets />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="player1LivesLabel" text="Vidas: 3" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
                </children>
                <opaqueInsets>
                   <Insets />
