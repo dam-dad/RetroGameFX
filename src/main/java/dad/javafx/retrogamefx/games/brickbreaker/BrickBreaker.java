@@ -30,7 +30,9 @@ public class BrickBreaker extends GameScene{
 	private static final int height = 600;
 	static int anchoBloque = width / maxColumnas;
 	static int altoBloque = height / maxFilas;
+	//array de las caras
 	ArrayList<Cara> Caras;
+	//El propiamente dicho mapa, aqui se guardan los bloques
 	Bricks[][] Bloques;
 	
 	// model
@@ -164,16 +166,16 @@ private void update(double diff) {
 
 
 
-
+//recorre la array de bricks para encontrar lados sin proteger de los bloques y llama a colision
 public void update(Bricks[][] bloques) {
 	for (int fila = 1; fila <= maxFilas - 2; fila++) {
 		for (int columna = 1; columna <= maxColumnas - 2; columna++) {
-			esNull(bloques[fila][columna],fila,columna);
+			if(bloques[fila][columna]!=null)esNull(bloques[fila][columna],fila,columna);
 		}
 	}
 	colision(Caras,ball);
 }
-
+//comprueba que los lados de los bricks sean null
 public void esNull(Bricks bloque,int fila, int columna) {
 	if (izquierda(fila, columna)) {
 		Caras.add(new Cara(bloque.getX(),bloque.getY(), bloque.getWidth(), bloque.getHeight(), true, fila, columna));
@@ -190,7 +192,7 @@ public void esNull(Bricks bloque,int fila, int columna) {
 
 }
 
-// comprueba si tiene encima un bloque normal o protegido
+// comprueba si tiene encima un bloque null
 public boolean izquierda(int fila, int columna) {
 	if (Bloques[fila][columna - 1] == null)
 		return true;
@@ -198,7 +200,7 @@ public boolean izquierda(int fila, int columna) {
 		return false;
 }
 
-// comprueba si tiene debajo un bloque normal o protegido
+// comprueba si tiene debajo un bloque null
 public boolean derecha(int fila, int columna) {
 	if (Bloques[fila][columna + 1] == null)
 		return true;
@@ -206,7 +208,7 @@ public boolean derecha(int fila, int columna) {
 		return false;
 }
 
-// comprueba si tiene a la izquierda un bloque normal o protegido
+// comprueba si tiene a la izquierda un bloque null
 public boolean arriba(int fila, int columna) {
 	if (Bloques[fila - 1][columna] == null)
 		return true;
@@ -214,26 +216,28 @@ public boolean arriba(int fila, int columna) {
 		return false;
 }
 
-// comprueba si tiene a la derecha un bloque normal o protegido
+// comprueba si tiene a la derecha un bloque null
 public boolean abajo(int fila, int columna) {
 	if (Bloques[fila + 1][columna] == null)
 		return true;
 	else
 		return false;
 }
-
+//comprueba que recorrerCaras haya encontrado colision, y si la encontro
+//elimina el bloque colisionado y sube el score
 public void colision(ArrayList<Cara> caras, Ball ball) {
 	if (recorrerCaras(caras, ball)[0] != -1) {
 		Bloques[recorrerCaras(caras, ball)[0]][recorrerCaras(caras, ball)[1]] = null;
 		player.setScore(player.getScore()+1);
 	}
 }
-
+//compara las caras con cada uno de los puntos de la pelota
 public int[] recorrerCaras(ArrayList<Cara> caras, Ball ball) {
 	int[] aux = { -1, -1 };
 	for (Cara x : caras) {
-		// añadir colisiones de otros 3 puntos de la pelota
-		if (comparadorCaraPunto(x, ball)) {
+		// falta añadir colisiones de otros 3 puntos de la pelota y/o 
+		//cambiar los puntos de colision de la pelota a su N,S,E,W
+		if (comparadorCaraPunto(x, ball.getX(),ball.getY())) {
 			aux[0] = x.fila;
 			aux[1] = x.columna;
 		}
@@ -241,18 +245,18 @@ public int[] recorrerCaras(ArrayList<Cara> caras, Ball ball) {
 	return aux;
 }
 
-//colision de 1 punto de la pelota hace falta poner 4 puntos a la pelota
-public boolean comparadorCaraPunto(Cara cara, Ball ball) {
+//colision de 1 punto de la pelota 
+public boolean comparadorCaraPunto(Cara cara, double x,double y) {
 	boolean aux = false;
 	if (cara.d) {
 		// linea horizontal misma Y, contiene X
-		double X = cara.x, Y = cara.y, W = cara.w, Xb = ball.getX(), Yb = ball.getY();
+		double X = cara.x, Y = cara.y, W = cara.w, Xb = x, Yb = y;
 		if (Y == Yb & X >= Xb & Xb >= (X + W)) {
 			aux = true;
 		}
 	} else {
 		// linea vertical misma X, contiene Y
-		double X = cara.x, Y = cara.y, H = cara.h, Xb = ball.getX(), Yb = ball.getY();
+		double X = cara.x, Y = cara.y, H = cara.h, Xb = x, Yb = y;
 		if (X == Xb & Y >= Yb & Yb >= (Y + H)) {
 			aux = true;
 		}
