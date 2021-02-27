@@ -1,6 +1,7 @@
 package dad.javafx.retrogamefx.games.pong;
 
 import dad.javafx.retrogamefx.games.Sprite;
+import dad.javafx.retrogamefx.games.brickbreaker.Bricks;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -52,18 +53,29 @@ public class Ball extends Sprite {
 
 	public void checkCollision(Sprite sprite) {
 		if (intersects(sprite)) {
-			
+			//Collision player cambiar para diferentes juegos
 			if (sprite instanceof Player) {
 				System.out.println("colisión con player");
-				setDirection(new Point2D(-getDirection().getX(), getDirection().getY()));
+				setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
 				setSpeed(getSpeed() + 1);
 			}
+			//Collision muros implementar choques laterales
 			else if (sprite instanceof Wall) {
 				System.out.println("colisión con muro");
 				setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
 			}
-
-			
+			else if (sprite instanceof Bricks) {
+				System.out.println("colisión con brick");
+				// Choques laterales
+				if(){
+					setDirection(new Point2D(-getDirection().getX(), getDirection().getY()));
+				}
+				// Choques verticales
+				else if(){
+					setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
+				}
+				
+			}
 		}
 	}
 

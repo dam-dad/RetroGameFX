@@ -102,7 +102,7 @@ public class Pong extends GameScene {
 
 	private void collision() {
 		
-		// aumenta la velocidad despues de chocar y cambio de dirreccion
+		// aumenta la velocidad despues de chocar y cambio de direccion
 		ball.checkCollision(player);
 		ball.checkCollision(cpu);
 		ball.checkCollision(topWall);
@@ -147,7 +147,7 @@ public class Pong extends GameScene {
 
 			// Reset posicion pelota al inicio
 			ball.setX(getWidth() / 2);
-			ball.setY(getWidth() / 2);
+			ball.setY(getHeight() / 2);
 			ball.setDirection(new Point2D(1.0, -1.0));			
 			if(new Random().nextBoolean()){
 				ball.setSpeed(ball.getSpeed() * -1);

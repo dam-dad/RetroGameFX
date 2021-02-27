@@ -22,10 +22,15 @@ public class BrickBreaker extends GameScene{
 	private static final double BALL_R = 20;
 	private boolean gameStarted;
 	
+	// model
 	private Player player;
 	private Background background;
 	private Ball ball;
 	private Wall topWall, leftWall, rightWall;
+	private Bricks brick;
+	
+	// view
+	
     @FXML
     private StackPane view;
 
@@ -48,18 +53,35 @@ public class BrickBreaker extends GameScene{
 		background = new Background(Color.BLACK);
 		background.setBounds(0, 0, getWidth(), getHeight());
 		
-		ball = new Ball();
-		ball.setX(getWidth() / 2);
-		ball.setY(getHeight() / 2);
-		ball.setRadio(BALL_R);
+		topWall = new Wall();
+		topWall.setBounds(0, 0, getWidth(), 10);
+		
+		//-------------------------------------------------------------
+		//Arreglar muros laterales
+		rightWall = new Wall();
+		rightWall.setBounds(getWidth(), 0, getWidth()+10, getHeight());
+		
+		leftWall = new Wall();
+		leftWall.setBounds(-10, 0, 10, getHeight());
+		//-------------------------------------------------------------
 		
 		player = new Player(Color.RED);
 		player.setBounds(getWidth()/2, getHeight()-10, 200, 10);
 		
+		ball = new Ball();
+		ball.setX(getWidth()/2);
+		ball.setY(getHeight()/2);
+		ball.setRadio(BALL_R);
+		
+		//Añadir mapeo de bricks
+		
+		player1ScoreLabel.textProperty().bind(player.scoreProperty().asString());
+		
+		// control de raton
 		canvas.setOnMouseMoved(e -> player.setX(e.getX() - player.getWidth() / 2));
 		canvas.setOnMouseClicked(e -> gameStarted = true);
 		
-		player1ScoreLabel.textProperty().bind(player.scoreProperty().asString());
+		
 	}
 	@Override
 	protected void gameLoop(double diff) {
@@ -82,12 +104,17 @@ public class BrickBreaker extends GameScene{
 	}
 private void collision() {
 		
-		// aumenta la velocidad despues de chocar y cambio de dirreccion
+		// aumenta la velocidad despues de chocar y cambio de direccion
 		ball.checkCollision(player);
 		ball.checkCollision(topWall);
-		ball.checkCollision(leftWall);
+		
+		//-----------------------------
+		//Arreglar muros laterales
+		ball.checkCollision(leftWall); 
 		ball.checkCollision(rightWall);
-	//	ball.checkCollision(brick);              //Implementar Bricks		
+		//-----------------------------
+		
+		ball.checkCollision(brick);              //Implementar Bricks		
 	}
 private void update(double diff) {
 
@@ -104,7 +131,7 @@ private void update(double diff) {
 
 			// Reset posicion pelota al inicio
 			ball.setX(getWidth() / 2);
-			ball.setY(getWidth() / 2);
+			ball.setY(getHeight() / 2);
 			ball.setDirection(new Point2D(1.0, -1.0));			
 			if(new Random().nextBoolean()){
 				ball.setSpeed(ball.getSpeed() * -1);
