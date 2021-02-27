@@ -1,26 +1,50 @@
 package dad.javafx.retrogamefx.snake;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import dad.javafx.retrogamefx.games.Sprite;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
-import dad.javafx.retrogamefx.games.GameScene;
-
-public class Snake extends GameScene{
-
-	public Snake() {
-		super("/fxml/BrickBreaker.fxml", 800, 600);
+public class Snake extends Sprite {
+	private Color color;
+	private IntegerProperty score = new SimpleIntegerProperty(0);
+	public Snake(Color color) {
+		super();
+		this.color = color;
 	}
-
+	
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
+	public void update(double diff) {
 		
 	}
+		// TODO Auto-generated method stub
+		public Color getColor() {
+			return color;
+		}
+
+		public void setColor(Color color) {
+			this.color = color;
+		}
+
+		public final IntegerProperty scoreProperty() {
+			return this.score;
+		}
+
+		public final int getScore() {
+			return this.scoreProperty().get();
+		}
+
+		public final void setScore(final int score) {
+			this.scoreProperty().set(score);
+		}
+	
 
 	@Override
-	protected void gameLoop(double diff) {
+	public void render(GraphicsContext gc) {
 		// TODO Auto-generated method stub
-		
+		gc.setFill(color);
+		gc.fillRect(getX(), getY(), getWidth(), getHeight());// palas
 	}
 
 }
