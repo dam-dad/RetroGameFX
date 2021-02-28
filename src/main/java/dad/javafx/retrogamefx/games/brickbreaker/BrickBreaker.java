@@ -13,8 +13,9 @@ import javafx.scene.layout.StackPane;
 import dad.javafx.retrogamefx.games.GameScene;
 import dad.javafx.retrogamefx.games.pong.Background;
 import dad.javafx.retrogamefx.games.pong.Ball;
+import dad.javafx.retrogamefx.games.pong.HorizontalWall;
 import dad.javafx.retrogamefx.games.pong.Player;
-import dad.javafx.retrogamefx.games.pong.Wall;
+import dad.javafx.retrogamefx.games.pong.VerticalWall;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -33,9 +34,10 @@ public class BrickBreaker extends GameScene{
 	private Player player;
 	private Background background;
 	private Ball ball;
-	private Wall topWall, leftWall, rightWall;
+	private VerticalWall topWall;
+	private HorizontalWall leftWall, rightWall;
+	private Map map;
 	private Bricks brick;
-	private Cara cara;
 	
 	// view
 	
@@ -64,15 +66,21 @@ public class BrickBreaker extends GameScene{
 		background = new Background(Color.BLACK);
 		background.setBounds(0, 0, getWidth(), getHeight());
 		
-		topWall = new Wall();
+		map= new Map(Color.DEEPSKYBLUE);
+		map.setBounds(getWidth()/6, 20, getWidth()/1.5, getHeight()/4);
+		
+		brick = new Bricks(Color.BLUEVIOLET);
+		brick.setBounds(getWidth()/6, 20, 20, 20);
+		
+		topWall = new VerticalWall();
 		topWall.setBounds(0, 0, getWidth(), 10);
 		
 		//-------------------------------------------------------------
 		//Arreglar muros laterales
-		rightWall = new Wall();
+		rightWall = new HorizontalWall();
 		rightWall.setBounds(getWidth(), 0, getWidth()+10, getHeight());
 		
-		leftWall = new Wall();
+		leftWall = new HorizontalWall();
 		leftWall.setBounds(-10, 0, 10, getHeight());
 		//-------------------------------------------------------------
 		
@@ -84,6 +92,9 @@ public class BrickBreaker extends GameScene{
 		ball.setY(getHeight()/2);
 		ball.setRadio(BALL_R);
 		
+		
+		
+		
 		//Añadir mapeo de bricks
 		
 		player1ScoreLabel.textProperty().bind(player.scoreProperty().asString());
@@ -92,6 +103,7 @@ public class BrickBreaker extends GameScene{
 		// control de raton
 		canvas.setOnMouseMoved(e -> player.setX(e.getX() - player.getWidth() / 2));
 		canvas.setOnMouseClicked(e -> gameStarted = true);
+		
 		
 		
 	}
@@ -110,9 +122,12 @@ public class BrickBreaker extends GameScene{
 	private void render(GraphicsContext gc) {
 
 		background.render(gc);
+		map.render(gc);
+		brick.render(gc);
 		ball.render(gc);
 		player.render(gc);
-
+		
+		
 	}
 private void collision() {
 		
@@ -125,7 +140,7 @@ private void collision() {
 		ball.checkCollision(leftWall); 
 		ball.checkCollision(rightWall);
 		//-----------------------------
-		
+		ball.checkCollision(map);
 		//ball.checkCollision(brick);              //Implementar Bricks		
 	}
 private void update(double diff) {
@@ -146,7 +161,6 @@ private void update(double diff) {
 			 }
 		}else {
 			// texto inicio
-
 			// Reset posicion pelota al inicio
 			ball.setX(getWidth() / 2);
 			ball.setY(getHeight() / 2);
@@ -156,53 +170,4 @@ private void update(double diff) {
 			}
 		}
 	}
-//------------------------Colisiones by cosme
-
-
-
-
-
-
-
-			//COLLISION ELIMINAR BLOQUE
-
-//comprueba que recorrerCaras haya encontrado colision, y si la encontro
-//elimina el bloque colisionado y sube el score
-public void colision(ArrayList<Cara> caras, Ball ball) {
-	if (recorrerCaras(caras, ball)[0] != -1) {
-		Bloques[recorrerCaras(caras, ball)[0]][recorrerCaras(caras, ball)[1]] = null;
-		player.setScore(player.getScore()+1);
-	}
-}
-
-
-				//COMPONENTE DE CARAS
-
-
-
-
-
-
-				//COLLISION PELOTA-BLOQUE
-
-//colision de 1 punto de la pelota 
-public boolean comparadorCaraPunto(Cara cara, double x,double y) {
-	boolean aux = false;
-	if (cara.d) {
-		// linea horizontal misma Y, contiene X
-		double X = cara.x, Y = cara.y, W = cara.w, Xb = x, Yb = y;
-		if (Y == Yb & X >= Xb & Xb >= (X + W)) {
-			aux = true;
-		}
-	} else {
-		// linea vertical misma X, contiene Y
-		double X = cara.x, Y = cara.y, H = cara.h, Xb = x, Yb = y;
-		if (X == Xb & Y >= Yb & Yb >= (Y + H)) {
-			aux = true;
-		}
-
-	}
-	return aux;
-
-}
 }

@@ -25,7 +25,7 @@ public class Pong extends GameScene {
 	private Player cpu;
 	private Background background;
 	private Ball ball;
-	private Wall topWall, bottomWall;
+	private VerticalWall topWall, bottomWall;
 
 	// view
 
@@ -51,10 +51,10 @@ public class Pong extends GameScene {
 		background = new Background(Color.BLACK);
 		background.setBounds(0, 0, getWidth(), getHeight());
 		
-		topWall = new Wall();
+		topWall = new VerticalWall();
 		topWall.setBounds(0, -10, getWidth(), 10);
 
-		bottomWall = new Wall();
+		bottomWall = new VerticalWall();
 		bottomWall.setBounds(0, getHeight(), getWidth(), getHeight() + 10);
 
 		ball = new Ball();

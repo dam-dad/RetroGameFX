@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import dad.javafx.retrogamefx.games.GameScene;
 import dad.javafx.retrogamefx.games.pong.Background;
 import dad.javafx.retrogamefx.games.pong.Player;
-import dad.javafx.retrogamefx.games.pong.Wall;
+import dad.javafx.retrogamefx.games.pong.VerticalWall;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -19,7 +19,7 @@ public class SnakeGame extends GameScene{
 
 	private Snake snake;
 	private Background background;
-	private Wall topWall, bottomWall, leftWall, rightWall;
+	private VerticalWall topWall, bottomWall, leftWall, rightWall;
 	
 	//view
 	@FXML
@@ -45,18 +45,18 @@ public class SnakeGame extends GameScene{
 		background = new Background(Color.BLACK);
 		background.setBounds(0, 0, getWidth(), getHeight());
 		//Muros horizontales
-		topWall = new Wall();
+		topWall = new VerticalWall();
 		topWall.setBounds(0, 0, getWidth(), 10);
 		
-		bottomWall = new Wall();
+		bottomWall = new VerticalWall();
 		bottomWall.setBounds(0, getHeight(), getWidth(), getHeight() + 10);
 		
 		//-------------------------------------------------------------
 		//Arreglar muros laterales
-		rightWall = new Wall();
+		rightWall = new VerticalWall();
 		rightWall.setBounds(getWidth(), 0, getWidth()+10, getHeight());
 		
-		leftWall = new Wall();
+		leftWall = new VerticalWall();
 		leftWall.setBounds(-10, 0, 10, getHeight());
 		//-------------------------------------------------------------
 		

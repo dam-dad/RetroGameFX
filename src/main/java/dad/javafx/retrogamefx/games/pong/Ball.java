@@ -1,7 +1,7 @@
 package dad.javafx.retrogamefx.games.pong;
 
 import dad.javafx.retrogamefx.games.Sprite;
-import dad.javafx.retrogamefx.games.brickbreaker.Bricks;
+import dad.javafx.retrogamefx.games.brickbreaker.Map;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -55,27 +55,33 @@ public class Ball extends Sprite {
 		if (intersects(sprite)) {
 			//Collision player cambiar para diferentes juegos
 			if (sprite instanceof Player) {
+				
 				System.out.println("colisión con player");
 				setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
 				setSpeed(getSpeed() + 1);
+				
 			}
 			//Collision muros implementar choques laterales
-			else if (sprite instanceof Wall) {
-				System.out.println("colisión con muro");
+			else if (sprite instanceof VerticalWall) {
+				System.out.println("colisión con muro vertical");
 				setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
 			}
-//			else if (sprite instanceof Bricks) {
-//				System.out.println("colisión con brick");
-//				// Choques laterales
+			else if (sprite instanceof HorizontalWall) {
+				System.out.println("colisión con muro horizontal");
+				setDirection(new Point2D(-getDirection().getX(), getDirection().getY()));
+			}
+			else if (sprite instanceof Map) {
+				System.out.println("colisión con brick");
+				// Choques laterales
 //				if(){
-//					setDirection(new Point2D(-getDirection().getX(), getDirection().getY()));
+					setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
 //				}
-//				// Choques verticales
+				// Choques verticales
 //				else if(){
 //					setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
 //				}
-//				
-//			}
+				
+			}
 		}
 	}
 

@@ -6,21 +6,20 @@ import javafx.scene.paint.Color;
 
 public class Bricks extends Sprite {
 	private Color color;
-	private Map map;
-	private double anchoBloque = width / map.getMaxColumnas();
-	private double altoBloque = height / map.getMaxFilas();
-	public Bricks() {
+	
+	
+	public Bricks(Color color) {
 		super();
-		this.color = Color.DEEPSKYBLUE;
+		
+		this.color = color;
 	}
 	@Override
-	public void update(double diff) {
-
-	}
+	public void update(double diff) {}
 
 	@Override
 	public void render(GraphicsContext gc) {
-		
+		gc.setFill(color);
+		gc.fillRect(getX(), getY(), getWidth(), getHeight());
 	}
 
 }
