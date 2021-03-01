@@ -61,7 +61,7 @@ public class SnakeGame extends GameScene{
 		//-------------------------------------------------------------
 		
 		snake = new Snake(Color.GREEN);
-		snake.setBounds(getWidth()/2, getHeight()-10, 200, 10);
+		snake.setBounds(getWidth()/2, getHeight()/2, 20, 10);
 		
 		player1ScoreLabel.textProperty().bind(snake.scoreProperty().asString());
 	}

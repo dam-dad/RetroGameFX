@@ -39,6 +39,7 @@ public class BrickBreaker extends GameScene{
 	private Map map;
 	private Bricks brick;
 	
+	
 	// view
 	
     @FXML
@@ -55,6 +56,8 @@ public class BrickBreaker extends GameScene{
     
     @FXML
     private Label player1LivesLabel;
+    
+    private ArrayList<Bricks> bricks= new ArrayList<Bricks>();
 	
 	public BrickBreaker() {
 		super("/fxml/BrickBreaker.fxml", 800, 600);
@@ -66,23 +69,21 @@ public class BrickBreaker extends GameScene{
 		background = new Background(Color.BLACK);
 		background.setBounds(0, 0, getWidth(), getHeight());
 		
-		map= new Map(Color.DEEPSKYBLUE);
-		map.setBounds(getWidth()/6, 20, getWidth()/1.5, getHeight()/4);
+//		map= new Map(Color.DEEPSKYBLUE);
+//		map.setBounds(getWidth()/6, 20, getWidth()/1.5, getHeight()/4);
 		
-		brick = new Bricks(Color.BLUEVIOLET);
-		brick.setBounds(getWidth()/6, 20, 20, 20);
+		brick = new Bricks(Color.BLUEVIOLET, getWidth()/6, 20, 40, 40);
+		//brick.setBounds(getWidth()/6, 20, 40, 40);
 		
 		topWall = new VerticalWall();
 		topWall.setBounds(0, 0, getWidth(), 10);
 		
-		//-------------------------------------------------------------
-		//Arreglar muros laterales
+		
 		rightWall = new HorizontalWall();
 		rightWall.setBounds(getWidth(), 0, getWidth()+10, getHeight());
 		
 		leftWall = new HorizontalWall();
 		leftWall.setBounds(-10, 0, 10, getHeight());
-		//-------------------------------------------------------------
 		
 		player = new Player(Color.RED);
 		player.setBounds(getWidth()/2, getHeight()-10, 200, 10);
@@ -92,19 +93,18 @@ public class BrickBreaker extends GameScene{
 		ball.setY(getHeight()/2);
 		ball.setRadio(BALL_R);
 		
-		
-		
-		
-		//Añadir mapeo de bricks
-		
 		player1ScoreLabel.textProperty().bind(player.scoreProperty().asString());
 		player1LivesLabel.textProperty().bind(player.livesProperty().asString());
+		
 		
 		// control de raton
 		canvas.setOnMouseMoved(e -> player.setX(e.getX() - player.getWidth() / 2));
 		canvas.setOnMouseClicked(e -> gameStarted = true);
-		
-		
+	}
+	public void BricksPack(ArrayList<Bricks> bricks){
+		for(int i=0; i<20;i++){
+			 bricks.add(brick);
+		}
 		
 	}
 	@Override
@@ -122,10 +122,14 @@ public class BrickBreaker extends GameScene{
 	private void render(GraphicsContext gc) {
 
 		background.render(gc);
-		map.render(gc);
-		brick.render(gc);
 		ball.render(gc);
 		player.render(gc);
+		//map.render(gc);
+		for(int x=0; x<bricks.size(); x++){
+			brick = bricks.get(x);
+			brick.render(gc);
+		}
+		
 		
 		
 	}
@@ -140,7 +144,7 @@ private void collision() {
 		ball.checkCollision(leftWall); 
 		ball.checkCollision(rightWall);
 		//-----------------------------
-		ball.checkCollision(map);
+		ball.checkCollision(brick);
 		//ball.checkCollision(brick);              //Implementar Bricks		
 	}
 private void update(double diff) {
