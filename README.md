@@ -20,7 +20,13 @@ Descarga aquí:
 
 ### Juegos
 
+#### Pong
+El mítico juego Pong que tanto revolucionó en su momento recreado en un ordenador. Hay muchas maneras de hacerlo, pero nosotros optamos por usar JavaFX y su herramienta Canvas para ello.
 <p align="center"><img src="/Github_Images/Pong.PNG" width=""/></p>
+
+#### Snake
+Uno más conocido por su paso por los telefonos moviles de los 2000, pero este fue creado en el 1976 pensado para ordenadores más que para maquinas de arcade, aunque pega muy bien con la temática y traera buenos recuerdos a muchos usurios.
+
 <p align="center"><img src="/Github_Images/snake.png" width=""/></p>
 
 
