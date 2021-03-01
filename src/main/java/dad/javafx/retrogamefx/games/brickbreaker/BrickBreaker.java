@@ -12,7 +12,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import dad.javafx.retrogamefx.games.GameScene;
-import dad.javafx.retrogamefx.snake.Corner;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -28,8 +27,8 @@ public class BrickBreaker extends GameScene {
 	private Player player;
 	private Background background;
 	private Ball ball;
-	private VerticalWall topWall;
-	private HorizontalWall leftWall, rightWall;
+	private HorizontalWall topWall;
+	private VerticalWall leftWall, rightWall;
 	private Map map;
 	private Brick brick;
 	static int maxFilas = 10;
@@ -39,24 +38,6 @@ public class BrickBreaker extends GameScene {
 	GraphicsContext gc;
 
 	// view
-	
-    @FXML
-    private StackPane view;
-
-    @FXML
-    private Canvas canvas;
-
-    @FXML
-    private BorderPane hudPane;
-
-    @FXML
-    private Label player1ScoreLabel;
-    
-    @FXML
-    private Label player1LivesLabel;
-    
-    private ArrayList<Brick> bricks= new ArrayList<Brick>();
-	
 
 	@FXML
 	private StackPane view;
@@ -83,14 +64,10 @@ public class BrickBreaker extends GameScene {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		gc = canvas.getGraphicsContext2D();
-		
+
 		ball = new Ball();
-		ball.setX(getWidth() / 2);
-		ball.setY(getHeight() / 2);
-		ball.setRadio(BALL_R);
 		
 		bricks = new ArrayList<Brick>();
-		ArrayBricks = new ArrayList<ArrayList<Brick>>();
 
 		background = new Background(Color.BLACK);
 		background.setBounds(0, 0, getWidth(), getHeight());
@@ -98,18 +75,18 @@ public class BrickBreaker extends GameScene {
 		// map= new Map(Color.DEEPSKYBLUE);
 //		map.setBounds(getWidth()/6, 20, getWidth()/1.5, getHeight()/4);
 
-		topWall = new VerticalWall();
-		topWall.setBounds(0, 0, getWidth(), 10);
+		topWall = new HorizontalWall();
+		topWall.setBounds(0, -10, getWidth(), 10);
 
-		rightWall = new HorizontalWall();
+		rightWall = new VerticalWall();
 		rightWall.setBounds(getWidth(), 0, getWidth() + 10, getHeight());
 
-		leftWall = new HorizontalWall();
+		leftWall = new VerticalWall();
 		leftWall.setBounds(-10, 0, 10, getHeight());
 
 		player = new Player(Color.RED);
 		player.setBounds(getWidth() / 2, getHeight() - 10, 200, 10);
-
+		
 		player1ScoreLabel.textProperty().bind(player.scoreProperty().asString());
 		player1LivesLabel.textProperty().bind(player.livesProperty().asString());
 		BricksPack();
@@ -118,35 +95,29 @@ public class BrickBreaker extends GameScene {
 		canvas.setOnMouseMoved(e -> player.setX(e.getX() - player.getWidth() / 2));
 		canvas.setOnMouseClicked(e -> gameStarted = true);
 	}
-	public void BricksPack(){
-		int i=0;
-		Brick brick;
-		for(int fila=0; fila<maxFilas;fila++){
-			for(int columna=0; columna<maxColumnas;columna++){
-				i++;
-				brick=new Brick(Color.AQUA,columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
-				brick.setBounds(columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
-			 bricks.add(brick);
-			 if(i==3) {i=0;}
-			 }
 
 	public void BricksPack() {
-		int i = 0;
+		
 		Brick brick;
 		for (int fila = 0; fila < maxFilas; fila++) {
 			for (int columna = 0; columna < maxColumnas; columna++) {
-				i++;
-				brick = new Brick(Color.RED, columna * anchoBloque, fila * altoBloque, anchoBloque-5, altoBloque-5);
-				if (i == 2) {
-					i = 0;
-				}
+				
+				brick = new Brick(Color.AQUA, columna * anchoBloque, fila * altoBloque, anchoBloque-5, altoBloque-5);
 				bricks.add(brick);
-				//
+				
 			}
-			ArrayBricks.add(bricks);
 		}
-
 	}
+
+	/*
+	 * public void BricksPack() { int i = 0; Brick brick; for (int fila = 0; fila <
+	 * maxFilas; fila++) { for (int columna = 0; columna < maxColumnas; columna++) {
+	 * i++; brick = new Brick(Color.RED, columna * anchoBloque, fila * altoBloque,
+	 * anchoBloque-5, altoBloque-5); if (i == 2) { i = 0; } bricks.add(brick); // }
+	 * ArrayBricks.add(bricks); }
+	 * 
+	 * }
+	 */
 
 	@Override
 	protected void gameLoop(double diff) {
@@ -162,40 +133,28 @@ public class BrickBreaker extends GameScene {
 	}
 
 	private void render(GraphicsContext gc) {
-		Brick brick;
 		background.render(gc);
 		ball.render(gc);
 		player.render(gc);
-		// map.render(gc);
-		for (int fila = 0; fila < maxFilas; fila++) {
-			bricks=ArrayBricks.get(fila);
-		for (int columna = 0; columna < maxColumnas; columna++) {
-			brick = bricks.get(columna);
-			brick.render(gc);
-		}
-		}
+		bricks.stream().forEach(b -> b.render(gc));
 	}
 
 	private void collision() {
 
 		// aumenta la velocidad despues de chocar y cambio de direccion
-		ball.setSprite(player);
-		ball.checkCollision();
-		ball.setSprite(topWall);
-		ball.checkCollision();
+
+		ball.checkCollision(player);
+		ball.checkCollision(topWall);
 
 		// -----------------------------
 		// Arreglar muros laterales
-		ball.setSprite(leftWall);
-		ball.checkCollision();
-		ball.setSprite(rightWall);
-		ball.checkCollision();
+
+		ball.checkCollision(leftWall);
+
+		ball.checkCollision(rightWall);
 		// -----------------------------
-		for (Brick c : bricks) {
-			ball.setSprite(c);
-			ball.checkCollision();
-		}
-		// ball.checkCollision(brick); //Implementar Bricks
+		new ArrayList<>(bricks).stream().filter(brick -> ball.checkCollision(brick)).forEach(brick -> bricks.remove(brick));
+
 	}
 
 	private void update(double diff) {
@@ -210,20 +169,15 @@ public class BrickBreaker extends GameScene {
 			// }
 
 			// Player pierde vida(revisar expresion e intentar optimizar)
-			if (ball.getY() > (player.getY() + player.getHeight())
-					&& ball.getX() != player.getX() + (player.getWidth())) {
+			if (ball.getY() > getHeight()) {
 				player.setLives(player.getLives() - 1);
 				gameStarted = false;
 			}
 		} else {
-			// texto inicio
-			// Reset posicion pelota al inicio
 			ball.setX(getWidth() / 2);
-			ball.setY(getHeight() / 2);
+			ball.setY(getHeight() * 3/4);
+			ball.setRadio(BALL_R);
 			ball.setDirection(new Point2D(1.0, -1.0));
-			if (new Random().nextBoolean()) {
-				ball.setSpeed(ball.getSpeed() * -1);
-			}
 		}
 	}
 }

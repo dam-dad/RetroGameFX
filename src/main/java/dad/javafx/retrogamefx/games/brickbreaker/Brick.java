@@ -6,69 +6,26 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class Brick extends Sprite {
-	//private Color color;
-	//private int Color;
-	private double x;
-	private double y;
-	private double width;
-	private double height;
+	private Color color;
+	
 	
 	public Brick(Color color, double x, double y, double width, double height) {
 		super();
-		color=color;
-		this.x= x;
-		this.y= y;
-		this.width= width;
-		this.height= height;
+		this.color=color;
+		setBounds(x,y,width,height);
 	}
 	@Override
 	public void update(double diff) {}
-
+	Image red=new Image("images/rojo.png");
+	
 	@Override
 	public void render(GraphicsContext gc) {
-		gc.setFill(Color.RED);
-		gc.fillRect(getX(), getY(), getWidth(), getHeight());
-		
-		//Image red= new Image("/images/red.png");
-		//Image green= new Image("/images/green.png");
-		
-		/*switch(Color) {
-		case 1://gc.drawImage(red,getX(), getY(), getWidth(), getHeight());
-			break;
-		case 2://gc.drawImage(green,getX(), getY(), getWidth(), getHeight());
-			break;
-		case 3: //gc.drawImage(,getX(), getY(), getWidth(), getHeight());
-			break;
-		case 4:	//gc.drawImage(,getX(), getY(), getWidth(), getHeight());
-		}*/
-		
-		//gc.drawImage(,getX(), getY(), getWidth(), getHeight());
+		//gc.setFill(Color.RED);
+		//gc.fillRect(getX(), getY(), getWidth(), getHeight());
+		gc.drawImage(red,getX(), getY(), getWidth(), getHeight());
 		
 	}
-	public double getX() {
-		return x;
-	}
-	public void setX(double x) {
-		this.x = x;
-	}
-	public double getY() {
-		return y;
-	}
-	public void setY(double y) {
-		this.y = y;
-	}
-	public double getWidth() {
-		return width;
-	}
-	public void setWidth(double width) {
-		this.width = width;
-	}
-	public double getHeight() {
-		return height;
-	}
-	public void setHeight(double height) {
-		this.height = height;
-	}
+	
 	
 	
 
