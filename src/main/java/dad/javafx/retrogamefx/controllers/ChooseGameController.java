@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import dad.javafx.retrogamefx.base.App;
 import dad.javafx.retrogamefx.games.brickbreaker.BrickBreaker;
 import dad.javafx.retrogamefx.games.pong.Pong;
-import dad.javafx.retrogamefx.snake.SnakeGame;
+import dad.javafx.retrogamefx.games.snake.SnakeGame;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

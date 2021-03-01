@@ -1,4 +1,4 @@
-package dad.javafx.retrogamefx.snake;
+package dad.javafx.retrogamefx.games.snake;
 
 import dad.javafx.retrogamefx.games.Sprite;
 import javafx.scene.canvas.GraphicsContext;

@@ -48,7 +48,7 @@ public class App extends Application {
 		primaryStage.show();
 		primaryStage.setResizable(false);
 		// primaryStage.getIcons().add(new Image("/images/classroom-24x24.png"));
-//		playMusica("MainSong");
+		playMusic("MainSong");
 	}
 
 	public static void main(String[] args) {

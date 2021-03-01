@@ -50,7 +50,7 @@
 							</additionalResources>
 							<mainClass>dad.javafx.retrogamefx.base.Main</mainClass>
 							<organizationName>DAD</organizationName>
-							<bundleJre>false</bundleJre>
+							<bundleJre>true</bundleJre>
 							<createZipball>true</createZipball>
 							<generateInstaller>false</generateInstaller>
 							<winConfig>

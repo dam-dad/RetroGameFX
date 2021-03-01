@@ -1,4 +1,4 @@
-package dad.javafx.retrogamefx.games.pong;
+package dad.javafx.retrogamefx.games.brickbreaker;
 
 import dad.javafx.retrogamefx.games.Sprite;
 import dad.javafx.retrogamefx.games.brickbreaker.Brick;
@@ -57,14 +57,36 @@ public class Ball extends Sprite {
 			if (sprite instanceof Player) {
 				
 				System.out.println("colisión con player");
-				setDirection(new Point2D(-getDirection().getX(), getDirection().getY()));
+				setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
 				setSpeed(getSpeed() + 1);
+				
 			}
 			//Collision muros implementar choques laterales
-			else if (sprite instanceof HorizontalWall) {
+			else if (sprite instanceof VerticalWall) {
+				System.out.println("colisión con muro vertical");
+				setDirection(new Point2D(-getDirection().getX(), getDirection().getY()));
+				
+			}
+			else if (sprite instanceof Wall) {
 				System.out.println("colisión con muro horizontal");
-				setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));}			
-		}return true;
+				setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
+			}
+			else if (sprite instanceof Brick) {
+				System.out.println("colisión con brick");
+				Brick brick = (Brick) sprite;
+				
+                //cocha por la Right y Left
+                if(getX() + 19 <= brick.getX() || getX() + 1 >= brick.getX() + brick.getWidth()) {
+    				setDirection(new Point2D(-getDirection().getX(), getDirection().getY()));
+                }else {// cocha por Top y Botton
+    				setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
+                }
+				
+				
+			}
+			
+			return true;
+		}
 	}
 
 	@Override

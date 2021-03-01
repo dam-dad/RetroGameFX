@@ -1,4 +1,4 @@
-package dad.javafx.retrogamefx.snake;
+package dad.javafx.retrogamefx.games.snake;
 
 public class Corner {
 int x;

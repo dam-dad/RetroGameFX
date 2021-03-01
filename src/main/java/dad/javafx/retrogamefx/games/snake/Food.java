@@ -1,4 +1,4 @@
-package dad.javafx.retrogamefx.snake;
+package dad.javafx.retrogamefx.games.snake;
 
 import java.util.function.ToDoubleFunction;
 

@@ -38,7 +38,7 @@ public class BrickBreaker extends GameScene{
 	private VerticalWall topWall;
 	private HorizontalWall leftWall, rightWall;
 	private Map map;
-	private Bricks brick;
+	private Brick brick;
 	static int maxFilas = 10;
 	static int maxColumnas = 20;
 	static int anchoBloque = 40;
@@ -62,7 +62,7 @@ public class BrickBreaker extends GameScene{
     @FXML
     private Label player1LivesLabel;
     
-    private ArrayList<Bricks> bricks= new ArrayList<Bricks>();
+    private ArrayList<Brick> bricks= new ArrayList<Brick>();
 	
 	public BrickBreaker() {
 		super("/fxml/BrickBreaker.fxml", 800, 600);
@@ -109,11 +109,11 @@ public class BrickBreaker extends GameScene{
 	}
 	public void BricksPack(){
 		int i=0;
-		Bricks brick;
+		Brick brick;
 		for(int fila=0; fila<maxFilas;fila++){
 			for(int columna=0; columna<maxColumnas;columna++){
 				i++;
-				brick=new Bricks(i,columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
+				brick=new Brick(Color.AQUA,columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
 				brick.setBounds(columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
 			 bricks.add(brick);
 			 if(i==3) {i=0;}
@@ -134,7 +134,7 @@ public class BrickBreaker extends GameScene{
 		render(canvas.getGraphicsContext2D());
 	}
 	private void render(GraphicsContext gc) {
-		Bricks brick;
+		Brick brick;
 		background.render(gc);
 		ball.render(gc);
 		player.render(gc);
