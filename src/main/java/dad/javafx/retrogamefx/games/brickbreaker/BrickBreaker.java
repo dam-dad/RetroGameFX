@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
+import javafx.scene.Parent;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -38,6 +39,10 @@ public class BrickBreaker extends GameScene{
 	private HorizontalWall leftWall, rightWall;
 	private Map map;
 	private Bricks brick;
+	static int maxFilas = 10;
+	static int maxColumnas = 20;
+	static int anchoBloque = 40;
+	static int altoBloque = 40;
 	
 	
 	// view
@@ -68,11 +73,11 @@ public class BrickBreaker extends GameScene{
 		
 		background = new Background(Color.BLACK);
 		background.setBounds(0, 0, getWidth(), getHeight());
-		
+		BricksPack();
 //		map= new Map(Color.DEEPSKYBLUE);
 //		map.setBounds(getWidth()/6, 20, getWidth()/1.5, getHeight()/4);
 		
-		brick = new Bricks(Color.BLUEVIOLET, getWidth()/6, 20, 40, 40);
+		//brick = new Bricks(Color.BLUEVIOLET, getWidth()/6, 20, 40, 40);
 		//brick.setBounds(getWidth()/6, 20, 40, 40);
 		
 		topWall = new VerticalWall();
@@ -97,13 +102,22 @@ public class BrickBreaker extends GameScene{
 		player1LivesLabel.textProperty().bind(player.livesProperty().asString());
 		
 		
+		
 		// control de raton
 		canvas.setOnMouseMoved(e -> player.setX(e.getX() - player.getWidth() / 2));
 		canvas.setOnMouseClicked(e -> gameStarted = true);
 	}
-	public void BricksPack(ArrayList<Bricks> bricks){
-		for(int i=0; i<20;i++){
+	public void BricksPack(){
+		int i=0;
+		Bricks brick;
+		for(int fila=0; fila<maxFilas;fila++){
+			for(int columna=0; columna<maxColumnas;columna++){
+				i++;
+				brick=new Bricks(i,columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
+				brick.setBounds(columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
 			 bricks.add(brick);
+			 if(i==3) {i=0;}
+			 }
 		}
 		
 	}
@@ -120,15 +134,15 @@ public class BrickBreaker extends GameScene{
 		render(canvas.getGraphicsContext2D());
 	}
 	private void render(GraphicsContext gc) {
-
+		Bricks brick;
 		background.render(gc);
 		ball.render(gc);
 		player.render(gc);
 		//map.render(gc);
-		for(int x=0; x<bricks.size(); x++){
-			brick = bricks.get(x);
-			brick.render(gc);
-		}
+		for (int fila = 0; fila <= maxFilas - 1; fila++) {
+			 brick=bricks.get(fila);
+			 brick.render(gc);
+            }
 		
 		
 		
