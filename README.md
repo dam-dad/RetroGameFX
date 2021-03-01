@@ -1,6 +1,8 @@
 # RetroGameFX
 <p align="center"><img src="/Github_Images/Retrogifs-1.gif" width=""/></p>
+
 ### Miembros
+
 David Castellano <br>
 Carlos Javier Cosme <br>
 David Garrido
