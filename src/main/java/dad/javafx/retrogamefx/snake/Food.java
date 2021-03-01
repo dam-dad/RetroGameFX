@@ -1,7 +1,10 @@
 package dad.javafx.retrogamefx.snake;
 
+import java.util.function.ToDoubleFunction;
+
 import dad.javafx.retrogamefx.games.Sprite;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class Food extends Sprite {
@@ -34,9 +37,13 @@ public class Food extends Sprite {
 
 	@Override
 	public void render(GraphicsContext gc) {
-		color=Color.WHITE;
-		gc.setFill(color);
-		gc.fillOval(x*30, y*30, 30, 30);
+		double xx=x*30;
+		double yy=y*30;
+		//color=Color.WHITE;
+		//gc.setFill(color);
+		Image manza=new Image("images/manzanita.png");
+		gc.drawImage(manza,xx,yy, 30.00, 30.00);
+		
 	}
 
 }

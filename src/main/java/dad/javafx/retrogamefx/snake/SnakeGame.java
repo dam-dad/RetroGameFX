@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -188,11 +189,13 @@ public class SnakeGame extends GameScene{
 		
 	private static void pintarsnake(GraphicsContext gc) {
 		for(Corner c:snakes) {
-			gc.setFill(Color.LIGHTGREEN);
-			gc.fillOval(c.x*cornersize, c.y*cornersize, cornersize-1, cornersize-1);
+			Image serpen=new Image("images/serpentilla.png");
+			gc.drawImage(serpen,c.x*cornersize, c.y*cornersize, cornersize-1, cornersize-1);
+			//gc.setFill(Color.LIGHTGREEN);
+			//gc.fillOval(c.x*cornersize, c.y*cornersize, cornersize-1, cornersize-1);
 			//capa para seguridad
-			gc.setFill(Color.LIGHTGREEN);
-			gc.fillOval(c.x*cornersize, c.y*cornersize, cornersize-2, cornersize-2);
+			//gc.setFill(Color.LIGHTGREEN);
+			gc.drawImage(serpen,c.x*cornersize, c.y*cornersize, cornersize-2, cornersize-2);
 		}
 	}
 	
