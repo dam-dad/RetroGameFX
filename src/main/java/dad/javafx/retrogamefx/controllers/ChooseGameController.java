@@ -8,6 +8,7 @@ import dad.javafx.retrogamefx.base.App;
 import dad.javafx.retrogamefx.games.brickbreaker.BrickBreaker;
 import dad.javafx.retrogamefx.games.pong.Pong;
 import dad.javafx.retrogamefx.snake.SnakeGame;
+import dad.javafx.retrogamesfx.games.laberinto.Laberinto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -108,7 +109,9 @@ public class ChooseGameController implements Initializable {
 
     @FXML
     void onJugar4Action(ActionEvent event) {
-
+    	Laberinto game =new Laberinto();
+    	App.playGame(game);
+    	game.play();
     }
 
     @FXML
