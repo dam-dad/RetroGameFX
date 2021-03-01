@@ -16,7 +16,7 @@
 .titulo {
 	 -fx-font-family: 'ArcadeClassic';
 }
-
+.botones:hover{-fx-background-color:#254055}
 .dark-blue {
     -fx-background-color: 
         #090a0c,

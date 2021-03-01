@@ -22,11 +22,11 @@
 	-fx-background-size:cover,contain;
 }
 .jueg03{
-	-fx-background-image:url(../images/FondoSelec.gif);
+	-fx-background-image:url(../images/Snake.png);
 	-fx-background-size:cover,contain;
 }
 .jueg04{
-	-fx-background-image:url(../images/FondoSelec.gif);
+	-fx-background-image:url(../images/Laberinto.PNG);
 	-fx-background-size:cover,contain;
 }
 .fondogrid1{

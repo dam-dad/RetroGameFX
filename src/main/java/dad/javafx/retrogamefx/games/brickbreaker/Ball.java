@@ -14,6 +14,7 @@ public class Ball extends Sprite {
 	private double speed = 500.0;
 	private Color color;
 	private double radio;
+	private Sprite sprite;
 
 	public Ball() {
 		super();
@@ -52,6 +53,7 @@ public class Ball extends Sprite {
 	}
 
 	public boolean checkCollision(Sprite sprite) {
+	public void checkCollision() {
 		if (intersects(sprite)) {
 			//Collision player cambiar para diferentes juegos
 			if (sprite instanceof Player) {
@@ -86,6 +88,24 @@ public class Ball extends Sprite {
 			}
 			
 			return true;
+				setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
+			}
+			else if (sprite instanceof HorizontalWall) {
+				System.out.println("colisión con muro horizontal");
+				setDirection(new Point2D(-getDirection().getX(), getDirection().getY()));
+			}
+			else if (sprite instanceof Brick) {
+				System.out.println("colisión con brick");
+				// Choques laterales
+//				if(){
+					setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
+//				}
+				// Choques verticales
+//				else if(){
+//					setDirection(new Point2D(getDirection().getX(), -getDirection().getY()));
+//				}
+				
+			}
 		}
 	}
 
@@ -101,5 +121,13 @@ public class Ball extends Sprite {
 		setX(getX() + direction.getX() * getSpeed() * diff);
 		setY(getY() + direction.getY() * getSpeed() * diff);
 
+	}
+
+	public Sprite getSprite() {
+		return sprite;
+	}
+
+	public void setSprite(Sprite sprite) {
+		this.sprite = sprite;
 	}
 }
