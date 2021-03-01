@@ -3,7 +3,6 @@ package dad.javafx.retrogamefx.games.brickbreaker;
 import java.util.ArrayList;
 
 import dad.javafx.retrogamefx.games.Sprite;
-import dad.javafx.retrogamefx.games.pong.Ball;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Cara extends Sprite {
