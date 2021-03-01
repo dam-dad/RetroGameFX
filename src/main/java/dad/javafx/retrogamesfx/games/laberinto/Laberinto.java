@@ -112,11 +112,11 @@ System.out.println("aux= "+aux);
 
 		});
 //--------------------Iniciacion de imagenes Para evitar carga lenta-------------------//
-		pared = new Image("sprites/pared.png");
-		camino = new Image("sprites/camino.png");
-		inicio = new Image("sprites/inicio.png");
-		fin = new Image("sprites/fin.png");
-		victoria = new Image("sprites/victoria.jpg");
+		pared = new Image("images/pared.png");
+		camino = new Image("images/camino.png");
+		inicio = new Image("images/inicio.png");
+		fin = new Image("images/fin.png");
+		victoria = new Image("images/victoria.jpg");
 
 //---------------------Preparar el mapa------------------//
 		view.requestFocus();

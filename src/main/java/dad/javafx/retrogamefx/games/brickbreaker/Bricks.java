@@ -6,16 +6,16 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class Bricks extends Sprite {
-	private Color color;
-	private int Color;
+	//private Color color;
+	//private int Color;
 	private double x;
 	private double y;
 	private double width;
 	private double height;
 	
-	public Bricks(int color, double x, double y, double width, double height) {
+	public Bricks(Color color, double x, double y, double width, double height) {
 		super();
-		Color=color;
+		color=color;
 		this.x= x;
 		this.y= y;
 		this.width= width;
@@ -26,23 +26,24 @@ public class Bricks extends Sprite {
 
 	@Override
 	public void render(GraphicsContext gc) {
-		gc.setFill(color);
-
-		Image red= new Image("sprites/red.png");
-		Image green= new Image("sprites/green.png");
+		gc.setFill(Color.RED);
+		gc.fillRect(getX(), getY(), getWidth(), getHeight());
 		
-		switch(Color) {
-		case 1:gc.drawImage(red,getX(), getY(), getWidth(), getHeight());
+		//Image red= new Image("/images/red.png");
+		//Image green= new Image("/images/green.png");
+		
+		/*switch(Color) {
+		case 1://gc.drawImage(red,getX(), getY(), getWidth(), getHeight());
 			break;
-		case 2:gc.drawImage(green,getX(), getY(), getWidth(), getHeight());
+		case 2://gc.drawImage(green,getX(), getY(), getWidth(), getHeight());
 			break;
 		case 3: //gc.drawImage(,getX(), getY(), getWidth(), getHeight());
 			break;
 		case 4:	//gc.drawImage(,getX(), getY(), getWidth(), getHeight());
+		}*/
 		
-		}
 		//gc.drawImage(,getX(), getY(), getWidth(), getHeight());
-		//gc.fillRect(getX(), getY(), getWidth(), getHeight());
+		
 	}
 	public double getX() {
 		return x;
