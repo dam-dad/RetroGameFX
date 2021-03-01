@@ -9,5 +9,7 @@
 	
 }
 .imagen{
-	-fx-background-image:url(../images/hugefondosonido.png);
+	-fx-background-image:url(../images/sonidofondo.gif);
+	    -fx-background-size: 600.0px 400.0px;
+   		-fx-background-repeat: no-repeat;
 }
