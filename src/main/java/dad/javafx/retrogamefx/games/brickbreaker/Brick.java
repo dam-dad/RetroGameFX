@@ -5,7 +5,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
-public class Bricks extends Sprite {
+public class Brick extends Sprite {
 	//private Color color;
 	//private int Color;
 	private double x;
@@ -13,7 +13,7 @@ public class Bricks extends Sprite {
 	private double width;
 	private double height;
 	
-	public Bricks(Color color, double x, double y, double width, double height) {
+	public Brick(Color color, double x, double y, double width, double height) {
 		super();
 		color=color;
 		this.x= x;

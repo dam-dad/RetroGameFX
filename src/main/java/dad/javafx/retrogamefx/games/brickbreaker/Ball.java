@@ -1,7 +1,7 @@
 package dad.javafx.retrogamefx.games.brickbreaker;
 
 import dad.javafx.retrogamefx.games.Sprite;
-import dad.javafx.retrogamefx.games.brickbreaker.Bricks;
+import dad.javafx.retrogamefx.games.brickbreaker.Brick;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -71,7 +71,7 @@ public class Ball extends Sprite {
 				System.out.println("colisión con muro horizontal");
 				setDirection(new Point2D(-getDirection().getX(), getDirection().getY()));
 			}
-			else if (sprite instanceof Bricks) {
+			else if (sprite instanceof Brick) {
 				System.out.println("colisión con brick");
 				// Choques laterales
 //				if(){

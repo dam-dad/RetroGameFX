@@ -31,7 +31,7 @@ public class BrickBreaker extends GameScene {
 	private VerticalWall topWall;
 	private HorizontalWall leftWall, rightWall;
 	private Map map;
-	private Bricks brick;
+	private Brick brick;
 	static int maxFilas = 10;
 	static int maxColumnas = 20;
 	static int anchoBloque = 40;
@@ -55,8 +55,8 @@ public class BrickBreaker extends GameScene {
 	@FXML
 	private Label player1LivesLabel;
 
-	private ArrayList<Bricks> bricks;
-	private ArrayList<ArrayList<Bricks>> ArrayBricks;
+	private ArrayList<Brick> bricks;
+	private ArrayList<ArrayList<Brick>> ArrayBricks;
 
 	public BrickBreaker() {
 		super("/fxml/BrickBreaker.fxml", 800, 600);
@@ -65,12 +65,14 @@ public class BrickBreaker extends GameScene {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		gc = canvas.getGraphicsContext2D();
+		
 		ball = new Ball();
 		ball.setX(getWidth() / 2);
 		ball.setY(getHeight() / 2);
 		ball.setRadio(BALL_R);
-		bricks = new ArrayList<Bricks>();
-		ArrayBricks = new ArrayList<ArrayList<Bricks>>();
+		
+		bricks = new ArrayList<Brick>();
+		ArrayBricks = new ArrayList<ArrayList<Brick>>();
 
 		background = new Background(Color.BLACK);
 		background.setBounds(0, 0, getWidth(), getHeight());
@@ -101,17 +103,15 @@ public class BrickBreaker extends GameScene {
 
 	public void BricksPack() {
 		int i = 0;
-		Bricks brick;
+		Brick brick;
 		for (int fila = 0; fila < maxFilas; fila++) {
 			for (int columna = 0; columna < maxColumnas; columna++) {
 				i++;
-				brick = new Bricks(Color.RED, columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
-				brick.setBounds(columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
+				brick = new Brick(Color.RED, columna * anchoBloque, fila * altoBloque, anchoBloque-5, altoBloque-5);
 				if (i == 2) {
 					i = 0;
 				}
 				bricks.add(brick);
-				brick = null;
 				//
 			}
 			ArrayBricks.add(bricks);
@@ -133,7 +133,7 @@ public class BrickBreaker extends GameScene {
 	}
 
 	private void render(GraphicsContext gc) {
-		Bricks brick;
+		Brick brick;
 		background.render(gc);
 		ball.render(gc);
 		player.render(gc);
@@ -162,7 +162,7 @@ public class BrickBreaker extends GameScene {
 		ball.setSprite(rightWall);
 		ball.checkCollision();
 		// -----------------------------
-		for (Bricks c : bricks) {
+		for (Brick c : bricks) {
 			ball.setSprite(c);
 			ball.checkCollision();
 		}

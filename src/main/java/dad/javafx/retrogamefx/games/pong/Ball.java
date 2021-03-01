@@ -1,7 +1,7 @@
 package dad.javafx.retrogamefx.games.pong;
 
 import dad.javafx.retrogamefx.games.Sprite;
-import dad.javafx.retrogamefx.games.brickbreaker.Bricks;
+import dad.javafx.retrogamefx.games.brickbreaker.Brick;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
