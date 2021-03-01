@@ -1,5 +1,5 @@
 # RetroGameFX
-<p align="center"><gif src="/github_images/Retrogifs-1.gif" width=""/></p>
+<p align="center"><img src="/Github_Images/Retrogifs-1.gif" width=""/></p>
 ### Miembros
 David Castellano <br>
 Carlos Javier Cosme <br>
@@ -16,8 +16,8 @@ Descarga aquí:
 
 ### Juegos
 
-<p align="center"><img src="/github_images/Pong.PNG" width=""/></p>
-<p align="center"><img src="/github_images/snake.png" width=""/></p>
+<p align="center"><img src="/Github_Images/Pong.PNG" width=""/></p>
+<p align="center"><img src="/Github_Images/snake.png" width=""/></p>
 
 
 ### Documentación
