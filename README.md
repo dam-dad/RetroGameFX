@@ -38,7 +38,7 @@ Uno más conocido por su paso por los telefonos moviles de los 2000, pero este f
 #### Laberinto
 Busca la salida de este laberinto ambiento en 2D.
 
-<p align="center"><img src="/Github_Images/snake.png" width=""/></p>
+<p align="center"><img src="/Github_Images/Maze.PNG" width=""/></p>
 
 ### Documentación
 
