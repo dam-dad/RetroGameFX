@@ -6,22 +6,37 @@ import javafx.scene.paint.Color;
 
 public class Food extends Sprite {
 	private Color color;
+	int x,y;
 	
-	public Food(Color color) {
-		super();
-		this.color = color;
+	public Food(int x, int y) {
+		this.x=x;
+		this.y=y;
+	}
+	public double getX() {
+	return x;
+	}
+
+	public void setX(int x) {
+	this.x = x;
+}
+
+	public double getY() {
+	return y;
+	}
+
+	public void setY(int y) {
+	this.y = y;
 	}
 	
 	@Override
 	public void update(double diff) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void render(GraphicsContext gc) {
-		// TODO Auto-generated method stub
-		
+		color=Color.WHITE;
+		gc.setFill(color);
+		gc.fillOval(x*30, y*30, 30, 30);
 	}
 
 }

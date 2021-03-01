@@ -12,7 +12,6 @@ public class Cara extends Sprite {
  public int fila,columna;
  private Map map;
  private ArrayList<Cara> Caras= new ArrayList<Cara>();
- 
  public Cara(double X,double Y,double W,double H,boolean D,int Fila,int Columna) {
 	 x=X;
 	 y=Y;

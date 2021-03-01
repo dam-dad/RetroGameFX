@@ -1,9 +1,9 @@
 package dad.javafx.retrogamefx.controllers;
 
 import java.io.IOException;
+
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import dad.javafx.retrogamefx.base.App;
 import dad.javafx.retrogamefx.games.brickbreaker.BrickBreaker;
 import dad.javafx.retrogamefx.games.pong.Pong;
@@ -101,7 +101,7 @@ public class ChooseGameController implements Initializable {
 
     @FXML
     void onJugar3Action(ActionEvent event) {
-    	SnakeGame game = new SnakeGame();
+    	SnakeGame game=new SnakeGame();
     	App.playGame(game);
     	game.play();
     }
