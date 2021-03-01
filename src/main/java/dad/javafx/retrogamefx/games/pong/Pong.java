@@ -4,14 +4,18 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import dad.javafx.retrogamefx.base.App;
 import dad.javafx.retrogamefx.games.GameScene;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class Pong extends GameScene {
 
@@ -26,7 +30,8 @@ public class Pong extends GameScene {
 	private Background background;
 	private Ball ball;
 	private VerticalWall topWall, bottomWall;
-
+	private boolean gameOver = false;
+	GraphicsContext gc;
 	// view
 
 	@FXML
@@ -47,10 +52,10 @@ public class Pong extends GameScene {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+		gc=canvas.getGraphicsContext2D();
 		background = new Background(Color.BLACK);
 		background.setBounds(0, 0, getWidth(), getHeight());
-		
+
 		topWall = new VerticalWall();
 		topWall.setBounds(0, -10, getWidth(), 10);
 
@@ -64,7 +69,7 @@ public class Pong extends GameScene {
 
 		player = new Player(Color.RED);
 		player.setBounds(0, getHeight() / 2, 10, 200);
-		
+
 		cpu = new CPU(Color.AQUA, ball, this);
 		cpu.setBounds(getWidth() - 10, getHeight() / 2, 10, 200);
 
@@ -72,23 +77,27 @@ public class Pong extends GameScene {
 		player2ScoreLabel.textProperty().bind(cpu.scoreProperty().asString());
 
 		// control de raton
+		canvas.setFocusTraversable(true);
 		canvas.setOnMouseMoved(e -> player.setY(e.getY() - player.getHeight() / 2));
 		canvas.setOnMouseClicked(e -> gameStarted = true);
-
+		canvas.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+			if (key.getCode() == KeyCode.ESCAPE) {
+				App.gotToMain();
+			}
+		});
 	}
 
 	@Override
 	protected void gameLoop(double diff) {
+			// actualizar elementos del juego
+			update(diff);
 
-		// actualizar elementos del juego
-		update(diff);
-		
-		// detectar colisiones
-		collision();
-		
-		// renderizado (pintar)
-		render(canvas.getGraphicsContext2D());
-		
+			// detectar colisiones
+			collision();
+
+			// renderizado (pintar)
+			render(gc);
+
 	}
 
 	private void render(GraphicsContext gc) {
@@ -97,17 +106,33 @@ public class Pong extends GameScene {
 		ball.render(gc);
 		player.render(gc);
 		cpu.render(gc);
-
+		
+		if (player.scoreProperty().getValue() == 5) {
+			gc.setFill(Color.RED);
+			gc.setFont(new Font("", 70));
+			gc.fillText("WIN", 175, 300);
+			gc.setFill(Color.YELLOWGREEN);
+			gc.setFont(new Font("", 18));
+			gc.fillText("Press Enter to play", 225, 400);
+		} else {
+			if (cpu.scoreProperty().getValue() == 5) {
+				gc.setFill(Color.RED);
+				gc.setFont(new Font("", 50));
+				gc.fillText("Game Over", 175, 300);
+				gc.setFill(Color.YELLOWGREEN);
+				gc.setFont(new Font("", 18));
+				gc.fillText("Press Enter to play", 225, 400);
+			}}
 	}
 
 	private void collision() {
-		
+
 		// aumenta la velocidad despues de chocar y cambio de direccion
 		ball.checkCollision(player);
 		ball.checkCollision(cpu);
 		ball.checkCollision(topWall);
 		ball.checkCollision(bottomWall);
-		
+
 	}
 
 	private void update(double diff) {
@@ -129,7 +154,7 @@ public class Pong extends GameScene {
 //					cpu.setY(cpu.getY()-5);
 //				}
 //			}
-			
+
 			// Punto para player (pelota se sale por la derecha)
 			if (ball.getX() > cpu.getX()) {
 				player.setScore(player.getScore() + 1);
@@ -141,20 +166,19 @@ public class Pong extends GameScene {
 				cpu.setScore(cpu.getScore() + 1);
 				gameStarted = false;
 			}
-			
+
 		} else {
 			// texto inicio
 
 			// Reset posicion pelota al inicio
 			ball.setX(getWidth() / 2);
 			ball.setY(getHeight() / 2);
-			ball.setDirection(new Point2D(1.0, -1.0));			
-			if(new Random().nextBoolean()){
+			ball.setDirection(new Point2D(1.0, -1.0));
+			if (new Random().nextBoolean()) {
 				ball.setSpeed(ball.getSpeed() * -1);
 			}
-				
-		}
 
+		}
 
 	}
 

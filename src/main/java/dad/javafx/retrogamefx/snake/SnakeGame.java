@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import dad.javafx.retrogamefx.base.App;
 import dad.javafx.retrogamefx.games.GameScene;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -92,6 +93,9 @@ public class SnakeGame extends GameScene{
 				snakes=snakes2;
 				cuerpoReset();
 				newFood();}
+			}
+			if(key.getCode()==KeyCode.ESCAPE) {
+				App.gotToMain();;	
 			}
 		});
 		Cuerpo();
