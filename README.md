@@ -42,7 +42,10 @@ Busca la salida de este laberinto ambientado en 2D.
 
 ### Documentación
 
-
+* [Pong](/Documentacion/Documentacion_Pong.pdf)
+* [BrickBreaker](/Documentacion/Documentacion__BreakOut.pdf)
+* [Snake](/Documentacion/Documentacion_Snake.pdf)
+* [Laberinto](/Documentacion/Documentacion__Laberintos.pdf)
 
 ### Agradecimientos
 
