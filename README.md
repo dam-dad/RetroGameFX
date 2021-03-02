@@ -26,7 +26,7 @@ El mítico juego Pong que tanto revolucionó en su momento recreado en un ordena
 <p align="center"><img src="/Github_Images/Pong.PNG" width=""/></p>
 
 #### Brick-Breaker
-Otro clásico de las maquinas arcades donde el objetivo era destruir todos los ladrillos sin perder tus 3 0 5 vidas y nosotros usamos el formato de 3 vidas por ahora.
+Otro clásico de las maquinas arcades donde el objetivo era destruir todos los ladrillos sin perder tus 3 0 5 vidas y nosotros usamos el formato de 5 vidas por ahora.
 
 <p align="center"><img src="/Github_Images/BrickBreaker.PNG" width=""/></p>
 
