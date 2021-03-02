@@ -8,6 +8,9 @@
 .text{
 	
 }
+body{
+	-overflow-y:hiden;
+}
 .imagen{
 	-fx-background-image:url(../images/FondoSelect.gif);
 	-fx-background-size:600px 400px;

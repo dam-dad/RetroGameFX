@@ -19,8 +19,8 @@ import javafx.scene.image.*;
 public class Laberinto extends GameScene {
 
 	// variables (objetos)
-	private static final int width = 600;// 18x44.44 X
-	private static final int height = 400;// 12x42.85 Y
+	private static final int width = 800;// 18x44.44 X
+	private static final int height = 600;// 12x42.85 Y
 	static int maxFilas = 14;
 	static int maxColumnas = 18;
 	static int anchoBloque = width/maxColumnas;
@@ -55,7 +55,7 @@ public class Laberinto extends GameScene {
 
 	public Laberinto() {
 
-		super("/fxml/LaberintoView.fxml", 600, 400);
+		super("/fxml/LaberintoView.fxml", 800, 600);
 	}
 
 	@Override
@@ -732,23 +732,23 @@ public class Laberinto extends GameScene {
 				// pintarCuadrado(gc);
 				if (laberinto[fila].charAt(columna) == 'P') {
 					
-						gc.drawImage(pared, (columna * anchoBloque)+100, (fila * altoBloque)+100, anchoBloque, altoBloque);
+						gc.drawImage(pared, (columna * anchoBloque), (fila * altoBloque), anchoBloque, altoBloque);
 					
 
 				}
 				if (laberinto[fila].charAt(columna) == '+') {
 					
-					gc.drawImage(camino, (columna * anchoBloque)+100, (fila * altoBloque)+100, anchoBloque, altoBloque);
+					gc.drawImage(camino, (columna * anchoBloque), (fila * altoBloque), anchoBloque, altoBloque);
 				
 				}
 				if (laberinto[fila].charAt(columna) == 'C' | laberinto[fila].charAt(columna) == '1') {
-					gc.drawImage(camino, (columna * anchoBloque)+100, (fila * altoBloque)+100, anchoBloque, altoBloque);
+					gc.drawImage(camino, (columna * anchoBloque), (fila * altoBloque), anchoBloque, altoBloque);
 				}
 				if (laberinto[fila].charAt(columna) == 'I') {
-					gc.drawImage(inicio, (columna * anchoBloque)+100, (fila * altoBloque)+100, anchoBloque, altoBloque);
+					gc.drawImage(inicio, (columna * anchoBloque), (fila * altoBloque), anchoBloque, altoBloque);
 				}
 				if (laberinto[fila].charAt(columna) == 'F') {
-					gc.drawImage(fin, (columna * anchoBloque)+100, (fila * altoBloque)+100, anchoBloque, altoBloque);
+					gc.drawImage(fin, (columna * anchoBloque), (fila * altoBloque), anchoBloque, altoBloque);
 				}
 			}
 		}

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
@@ -12,42 +12,41 @@
 
 <GridPane fx:id="View" prefHeight="392.0" prefWidth="600.0" styleClass="imagen" stylesheets="@../css/SelectView.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
 	<columnConstraints>
-		<ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="10.0" prefWidth="113.0" />
-		<ColumnConstraints hgrow="SOMETIMES" maxWidth="159.0" minWidth="10.0" prefWidth="124.0" />
-		<ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="10.0" prefWidth="132.0" />
-		<ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="137.0" />
-		<ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="137.0" />
+		<ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="10.0" prefWidth="87.0" />
+		<ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
+		<ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="10.0" prefWidth="84.0" />
+		<ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
+		<ColumnConstraints hgrow="SOMETIMES" maxWidth="146.0" minWidth="10.0" prefWidth="93.0" />
 	</columnConstraints>
 	<rowConstraints>
 		<RowConstraints maxHeight="69.0" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
-		<RowConstraints maxHeight="181.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
-		<RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
-		<RowConstraints maxHeight="190.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
+		<RowConstraints maxHeight="181.0" minHeight="10.0" prefHeight="130.0" vgrow="SOMETIMES" />
+		<RowConstraints maxHeight="202.0" minHeight="10.0" prefHeight="66.0" vgrow="SOMETIMES" />
+		<RowConstraints maxHeight="190.0" minHeight="10.0" prefHeight="127.0" vgrow="SOMETIMES" />
 	</rowConstraints>
 	<children>
-		<ScrollBar orientation="VERTICAL" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowSpan="4" />
 		<Button fx:id="volverButton" alignment="CENTER" mnemonicParsing="false" onAction="#onVolverAction" text="Volver" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          <styleClass>
             <String fx:value="dark-blue" />
             <String fx:value="botones" />
          </styleClass></Button>
-		<GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+		<GridPane prefHeight="106.0" prefWidth="124.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
 			<columnConstraints>
 				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 			</columnConstraints>
 			<rowConstraints>
-				<RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
-				<RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Pane fx:id="Snake" prefHeight="200.0" prefWidth="200.0" styleClass="jueg03Lock" GridPane.columnSpan="2" />
-				<Button fx:id="jugar3Button" mnemonicParsing="false" onAction="#onJugar3Action" text="Jugar" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+				<Pane fx:id="Snake" prefHeight="89.0" prefWidth="115.0" styleClass="jueg03Lock" GridPane.columnSpan="2" />
+				<Button fx:id="jugar3Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onJugar3Action" text="Jugar" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <styleClass>
                   <String fx:value="dark-blue" />
                   <String fx:value="botones" />
                </styleClass></Button>
-				<Button fx:id="comprar3Button" mnemonicParsing="false" onAction="#onComprar3Action" prefHeight="23.0" prefWidth="64.0" text="Comprar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+				<Button fx:id="comprar3Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onComprar3Action" text="Comprar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <styleClass>
                   <String fx:value="dark-blue" />
                   <String fx:value="botones" />
@@ -63,35 +62,17 @@
 				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 			</columnConstraints>
 			<rowConstraints>
-				<RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
-				<RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
 				<Pane fx:id="Brick" prefHeight="200.0" prefWidth="200.0" styleClass="jueg02Lock" GridPane.columnSpan="2" />
-				<Button fx:id="jugar2Button" mnemonicParsing="false" onAction="#onJugar2Action" text="Jugar" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+				<Button fx:id="jugar2Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onJugar2Action" text="Jugar" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <styleClass>
                   <String fx:value="dark-blue" />
                   <String fx:value="botones" />
                </styleClass></Button>
-				<Button fx:id="comprar2Button" mnemonicParsing="false" onAction="#onComprar2Action" text="Comprar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-               <styleClass>
-                  <String fx:value="dark-blue" />
-                  <String fx:value="botones" />
-               </styleClass></Button>
-			</children>
-		</GridPane>
-		<GridPane styleClass="fondogrid1" GridPane.columnIndex="1" GridPane.rowIndex="1">
-			<columnConstraints>
-				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-			</columnConstraints>
-			<rowConstraints>
-				<RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
-				<RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
-			</rowConstraints>
-			<children>
-				<Pane fx:id="Pong" prefHeight="200.0" prefWidth="200.0" styleClass="jueg01Lock" GridPane.columnSpan="2" />
-				<Button fx:id="comprar1Button" mnemonicParsing="false" onAction="#onComprar1Action" text="Comprar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+				<Button fx:id="comprar2Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onComprar2Action" text="Comprar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <styleClass>
                   <String fx:value="dark-blue" />
                   <String fx:value="botones" />
@@ -99,7 +80,28 @@
                <font>
                   <Font size="10.0" />
                </font></Button>
-				<Button fx:id="jugar1Button" mnemonicParsing="false" onAction="#onJugar1Action" text="Jugar" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+			</children>
+		</GridPane>
+		<GridPane prefHeight="110.0" prefWidth="128.0" styleClass="fondogrid1" GridPane.columnIndex="1" GridPane.rowIndex="1">
+			<columnConstraints>
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+			</columnConstraints>
+			<rowConstraints>
+				<RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+			</rowConstraints>
+			<children>
+				<Pane fx:id="Pong" styleClass="jueg01Lock" GridPane.columnSpan="2" />
+				<Button fx:id="comprar1Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onComprar1Action" text="Comprar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <styleClass>
+                  <String fx:value="dark-blue" />
+                  <String fx:value="botones" />
+               </styleClass>
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+				<Button fx:id="jugar1Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onJugar1Action" text="Jugar" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.vgrow="SOMETIMES">
                <styleClass>
                   <String fx:value="dark-blue" />
                   <String fx:value="botones" />
@@ -112,17 +114,20 @@
 				<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 			</columnConstraints>
 			<rowConstraints>
-				<RowConstraints maxHeight="71.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
-				<RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+				<RowConstraints maxHeight="45.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
 				<Pane fx:id="Lab" prefHeight="200.0" prefWidth="200.0" styleClass="jueg04Lock" GridPane.columnSpan="2" />
-				<Button fx:id="comprar4Button" mnemonicParsing="false" onAction="#onComprar4Action" text="Comprar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+				<Button fx:id="comprar4Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onComprar4Action" text="Comprar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <styleClass>
                   <String fx:value="dark-blue" />
                   <String fx:value="botones" />
-               </styleClass></Button>
-				<Button fx:id="jugar4Button" mnemonicParsing="false" onAction="#onJugar4Action" text="Jugar" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               </styleClass>
+               <font>
+                  <Font size="10.0" />
+               </font></Button>
+				<Button fx:id="jugar4Button" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onJugar4Action" prefHeight="30.0" prefWidth="107.0" text="Jugar" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <styleClass>
                   <String fx:value="dark-blue" />
                   <String fx:value="botones" />
@@ -139,10 +144,13 @@
 				<Font size="24.0" />
 			</font>
 		</Text>
-      <Text fx:id="puntos" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="root" text="0" wrappingWidth="30.684371948242188" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+      <Text fx:id="puntos" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="root" text="0" wrappingWidth="30.684371948242188" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="2">
          <font>
             <Font size="24.0" />
          </font>
+         <GridPane.margin>
+            <Insets left="20.0" />
+         </GridPane.margin>
       </Text>
 	</children>
 </GridPane>
