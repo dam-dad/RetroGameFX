@@ -27,8 +27,8 @@ public class Laberinto extends GameScene {
 	static Personaje pelota;
 	static Mapa mapa = new Mapa();
 	Random R;
-	Image pared;
-	Image camino;
+	Image pared, pared2;
+	Image camino, camino2;
 	Image inicio;
 	Image fin;
 	Image victoria;
@@ -37,7 +37,7 @@ public class Laberinto extends GameScene {
 	String[] laberinto;
 	String[] semilla;
 	String[] laberintoTransformado;
-	static int x, y, x0, y0, xf, yf,aux, aux2, I;
+	static int x, y, x0, y0, xf, yf, aux, aux2, I;
 	static char[] direccionesDisponibles = { ' ', ' ', ' ', ' ' };
 	static int[] siguienteDireccion;
 	char c, direccion;
@@ -54,7 +54,7 @@ public class Laberinto extends GameScene {
 
 	public Laberinto() {
 
-		super("/fxml/LaberintoView.fxml",800,600);
+		super("/fxml/LaberintoView.fxml", 800, 600);
 	}
 
 	@Override
@@ -89,17 +89,17 @@ public class Laberinto extends GameScene {
 					break;
 				case ENTER:
 					aux2 = R.nextInt(4) + 1;
-System.out.println("aux= "+aux);
-					if(aux2==aux) {
-						aux=R.nextInt(4) + 1;;
+					if (aux2 == aux) {
+						aux = R.nextInt(4) + 1;
+						;
 					}
-					System.out.println("aux= "+aux);
 					invocarMapa(aux);
 					encontrarI();
 					encontrarF();
 					x = x0;
 					y = y0;
-					if(aux!=1)crearMapa();
+					if (aux != 1)
+						crearMapa();
 					pelota = new Personaje((x0) * anchoBloque, (y0) * altoBloque, anchoBloque, altoBloque);
 					run(gc);
 					break;
@@ -114,6 +114,8 @@ System.out.println("aux= "+aux);
 //--------------------Iniciacion de imagenes Para evitar carga lenta-------------------//
 		pared = new Image("images/pared.png");
 		camino = new Image("images/camino.png");
+		pared2 = new Image("images/bluespiral.png");
+		camino2 = new Image("images/bluesmar.png");
 		inicio = new Image("images/inicio.png");
 		fin = new Image("images/fin.png");
 		victoria = new Image("images/victoria.jpg");
@@ -132,8 +134,6 @@ System.out.println("aux= "+aux);
 	public void play() {
 		// timer.start();
 	}
-
-	
 
 	private void run(GraphicsContext gc) {
 
@@ -711,23 +711,23 @@ System.out.println("aux= "+aux);
 			for (int columna = 0; columna <= maxColumnas - 1; columna++) {
 				// pintarCuadrado(gc);
 				if (laberinto[fila].charAt(columna) == 'P') {
-					gc.setFill(Color.DARKGREEN);
-					gc.drawImage(pared, columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
+					
+						gc.drawImage(pared, columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
+					
+
 				}
 				if (laberinto[fila].charAt(columna) == '+') {
-					gc.setFill(Color.DARKGREEN);
-					gc.fillRect(columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
+					
+					gc.drawImage(camino, columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
+				
 				}
 				if (laberinto[fila].charAt(columna) == 'C' | laberinto[fila].charAt(columna) == '1') {
-					gc.setFill(Color.LIGHTBLUE);
 					gc.drawImage(camino, columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
 				}
 				if (laberinto[fila].charAt(columna) == 'I') {
-					gc.setFill(Color.GREEN);
 					gc.drawImage(inicio, columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
 				}
 				if (laberinto[fila].charAt(columna) == 'F') {
-					gc.setFill(Color.RED);
 					gc.drawImage(fin, columna * anchoBloque, fila * altoBloque, anchoBloque, altoBloque);
 				}
 			}
@@ -1002,6 +1002,6 @@ System.out.println("aux= "+aux);
 	@Override
 	protected void gameLoop(double diff) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

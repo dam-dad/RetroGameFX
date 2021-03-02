@@ -1,8 +1,6 @@
 package dad.javafx.retrogamefx.games.brickbreaker;
 
 import dad.javafx.retrogamefx.games.Sprite;
-import dad.javafx.retrogamefx.games.Wall;
-import dad.javafx.retrogamefx.games.brickbreaker.Brick;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;

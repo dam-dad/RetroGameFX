@@ -9,7 +9,8 @@ import dad.javafx.retrogamefx.games.brickbreaker.BrickBreaker;
 import dad.javafx.retrogamefx.games.pong.Pong;
 import dad.javafx.retrogamefx.games.snake.SnakeGame;
 import dad.javafx.retrogamesfx.games.laberinto.Laberinto;
-
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +20,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 public class ChooseGameController implements Initializable {
-	
+	Boolean comprar1=false,comprar2=false,comprar3=false,comprar4=false;
 
     @FXML
     private GridPane View;
@@ -53,7 +54,13 @@ public class ChooseGameController implements Initializable {
 
     @FXML
     private Text puntosText;
-
+    @FXML
+    private Text puntos;
+    
+    private IntegerProperty Puntos = new SimpleIntegerProperty(0);
+    public final IntegerProperty puntosProperty() {
+		return this.Puntos;
+	}
 	public ChooseGameController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChooseGameView.fxml"));
 		loader.setController(this);
@@ -64,27 +71,39 @@ public class ChooseGameController implements Initializable {
 
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+		puntos.textProperty().bind(puntosProperty().asString());
+		puntosProperty().setValue(5);
 	}
 	
     @FXML
     void onComprar1Action(ActionEvent event) {
-
+    	if(!comprar1) {
+    	puntosProperty().setValue(puntosProperty().getValue()-1);
+    	comprar1=true;}
     }
 
     @FXML
     void onComprar2Action(ActionEvent event) {
-
+    	if(!comprar2) {
+        	puntosProperty().setValue(puntosProperty().getValue()-1);
+        	comprar2=true;
+        	}
     }
 
     @FXML
     void onComprar3Action(ActionEvent event) {
-
+    	if(!comprar3) {
+        	puntosProperty().setValue(puntosProperty().getValue()-1);
+        	comprar3=true;
+        	}
     }
 
     @FXML
     void onComprar4Action(ActionEvent event) {
-
+    	if(!comprar4) {
+        	puntosProperty().setValue(puntosProperty().getValue()-1);
+        	comprar4=true;
+        	}
     }
 
     @FXML

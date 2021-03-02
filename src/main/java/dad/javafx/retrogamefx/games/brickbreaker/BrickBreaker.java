@@ -2,22 +2,25 @@ package dad.javafx.retrogamefx.games.brickbreaker;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import dad.javafx.retrogamefx.base.App;
 import dad.javafx.retrogamefx.games.GameScene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class BrickBreaker extends GameScene {
 
-	private static final double BALL_R = 20;
+	private static final double BALL_R = 15;
 	private boolean gameStarted;
 	// array de las caras
 
@@ -29,8 +32,6 @@ public class BrickBreaker extends GameScene {
 	private Ball ball;
 	private HorizontalWall topWall;
 	private VerticalWall leftWall, rightWall;
-	private Map map;
-	private Brick brick;
 	static int maxFilas = 10;
 	static int maxColumnas = 20;
 	static int anchoBloque = 40;
@@ -55,7 +56,6 @@ public class BrickBreaker extends GameScene {
 	private Label player1LivesLabel;
 
 	private ArrayList<Brick> bricks;
-	private ArrayList<ArrayList<Brick>> ArrayBricks;
 
 	public BrickBreaker() {
 		super("/fxml/BrickBreaker.fxml", 800, 600);
@@ -72,9 +72,6 @@ public class BrickBreaker extends GameScene {
 		background = new Background(Color.BLACK);
 		background.setBounds(0, 0, getWidth(), getHeight());
 
-		// map= new Map(Color.DEEPSKYBLUE);
-//		map.setBounds(getWidth()/6, 20, getWidth()/1.5, getHeight()/4);
-
 		topWall = new HorizontalWall();
 		topWall.setBounds(0, -10, getWidth(), 10);
 
@@ -86,41 +83,60 @@ public class BrickBreaker extends GameScene {
 
 		player = new Player(Color.RED);
 		player.setBounds(getWidth() / 2, getHeight() - 10, 200, 10);
-		
+		player.scoreProperty().setValue(0);
+		player.livesProperty().setValue(5);
+
 		player1ScoreLabel.textProperty().bind(player.scoreProperty().asString());
 		player1LivesLabel.textProperty().bind(player.livesProperty().asString());
 		BricksPack();
 
 		// control de raton
+		canvas.setFocusTraversable(true);
 		canvas.setOnMouseMoved(e -> player.setX(e.getX() - player.getWidth() / 2));
 		canvas.setOnMouseClicked(e -> gameStarted = true);
+		canvas.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+			if (key.getCode() == KeyCode.ESCAPE) {
+				App.gotToMain();
+			}
+		});
 	}
 
 	public void BricksPack() {
-		
+		int i=0;
 		Brick brick;
 		for (int fila = 0; fila < maxFilas; fila++) {
 			for (int columna = 0; columna < maxColumnas; columna++) {
-				
-				brick = new Brick(Color.AQUA, columna * anchoBloque, fila * altoBloque, anchoBloque-5, altoBloque-5);
+				i++;
+				brick = new Brick(i, columna * anchoBloque, fila * altoBloque, anchoBloque - 5,
+						altoBloque - 5);
+				if(i==7) {i=0;}
 				bricks.add(brick);
-				
+
 			}
 		}
 	}
 
-	/*
-	 * public void BricksPack() { int i = 0; Brick brick; for (int fila = 0; fila <
-	 * maxFilas; fila++) { for (int columna = 0; columna < maxColumnas; columna++) {
-	 * i++; brick = new Brick(Color.RED, columna * anchoBloque, fila * altoBloque,
-	 * anchoBloque-5, altoBloque-5); if (i == 2) { i = 0; } bricks.add(brick); // }
-	 * ArrayBricks.add(bricks); }
-	 * 
-	 * }
-	 */
+
 
 	@Override
 	protected void gameLoop(double diff) {
+		if (comprobar()) {
+			if (player.scoreProperty().getValue() == (maxColumnas * maxFilas)) {
+				gc.setFill(Color.RED);
+				gc.setFont(new Font("", 70));
+				gc.fillText("WIN", 175, 300);
+				gc.setFill(Color.YELLOWGREEN);
+				gc.setFont(new Font("", 18));
+				gc.fillText("Press Enter to play", 225, 400);
+			} else {if (player.livesProperty().getValue() == 0) {
+				gc.setFill(Color.RED);
+				gc.setFont(new Font("", 50));
+				gc.fillText("Game Over", 175, 300);
+				gc.setFill(Color.YELLOWGREEN);
+				gc.setFont(new Font("", 18));
+				gc.fillText("Press Enter to play", 225, 400);
+				}}
+		}else {
 
 		// actualizar elementos del juego
 		update(diff);
@@ -130,6 +146,20 @@ public class BrickBreaker extends GameScene {
 
 		// renderizado (pintar)
 		render(gc);
+		}
+	}
+
+	private boolean comprobar() {
+		boolean fin = false;
+		if (player.scoreProperty().getValue() == (maxColumnas * maxFilas)) {
+
+			fin = true;
+		} else {
+			if (player.livesProperty().getValue() == 0) {
+				fin = true;
+			}
+		}
+		return fin;
 	}
 
 	private void render(GraphicsContext gc) {
@@ -150,11 +180,11 @@ public class BrickBreaker extends GameScene {
 		// Arreglar muros laterales
 
 		ball.checkCollision(leftWall);
-
 		ball.checkCollision(rightWall);
-		// -----------------------------
-		new ArrayList<>(bricks).stream().filter(brick -> ball.checkCollision(brick)).forEach(brick -> bricks.remove(brick));
-
+		// -----------------------------scoreProperty
+		new ArrayList<>(bricks).stream().filter(brick -> ball.checkCollision(brick))
+				.forEach(brick -> bricks.remove(brick));
+		player.setScore(maxFilas * maxColumnas - bricks.toArray().length);
 	}
 
 	private void update(double diff) {
@@ -175,7 +205,7 @@ public class BrickBreaker extends GameScene {
 			}
 		} else {
 			ball.setX(getWidth() / 2);
-			ball.setY(getHeight() * 3/4);
+			ball.setY(getHeight() * 3 / 4);
 			ball.setRadio(BALL_R);
 			ball.setDirection(new Point2D(1.0, -1.0));
 		}

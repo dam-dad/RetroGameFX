@@ -14,11 +14,11 @@
 	-fx-background-repeat:no-repeat;
 }
 .jueg01{
-	-fx-background-image:url(../images/pong.jpg);
+	-fx-background-image:url(../images/Pong.PNG);
 	-fx-background-size:cover,contain;
 }
 .jueg02{
-	-fx-background-image:url(../images/FondoSelec.gif);
+	-fx-background-image:url(../images/BrickBreaker.PNG);
 	-fx-background-size:cover,contain;
 }
 .jueg03{

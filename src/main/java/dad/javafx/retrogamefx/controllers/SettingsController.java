@@ -50,7 +50,7 @@ public class SettingsController implements Initializable {
     }
 
 	public void initialize(URL location, ResourceBundle resources) {
-		App.volumeProperty().bind(slider_musc.valueProperty().divide(100));
+		App.volumeProperty().bind(slider_musc.valueProperty().divide(50));
 	}
 	
 	public GridPane getView() {

@@ -56,16 +56,17 @@ public class Pong extends GameScene {
 		background = new Background(Color.BLACK);
 		background.setBounds(0, 0, getWidth(), getHeight());
 
+	
+		ball = new Ball();
+		ball.setX(getWidth() / 2);
+		ball.setY(getHeight() / 2);
+		ball.setRadio(BALL_R);
+		
 		topWall = new VerticalWall();
 		topWall.setBounds(0, -10, getWidth(), 10);
 
 		bottomWall = new VerticalWall();
 		bottomWall.setBounds(0, getHeight(), getWidth(), getHeight() + 10);
-
-		ball = new Ball();
-		ball.setX(getWidth() / 2);
-		ball.setY(getHeight() / 2);
-		ball.setRadio(BALL_R);
 
 		player = new Player(Color.RED);
 		player.setBounds(0, getHeight() / 2, 10, 200);
@@ -77,12 +78,18 @@ public class Pong extends GameScene {
 		player2ScoreLabel.textProperty().bind(cpu.scoreProperty().asString());
 
 		// control de raton
-		canvas.setFocusTraversable(true);
+		
 		canvas.setOnMouseMoved(e -> player.setY(e.getY() - player.getHeight() / 2));
 		canvas.setOnMouseClicked(e -> gameStarted = true);
+		canvas.setFocusTraversable(true);
 		canvas.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 			if (key.getCode() == KeyCode.ESCAPE) {
 				App.gotToMain();
+			}
+			if (key.getCode() == KeyCode.ENTER) {
+				player.setScore(0);
+				cpu.setScore(0);
+				gameStarted=false;
 			}
 		});
 	}
@@ -107,22 +114,7 @@ public class Pong extends GameScene {
 		player.render(gc);
 		cpu.render(gc);
 		
-		if (player.scoreProperty().getValue() == 5) {
-			gc.setFill(Color.RED);
-			gc.setFont(new Font("", 70));
-			gc.fillText("WIN", 175, 300);
-			gc.setFill(Color.YELLOWGREEN);
-			gc.setFont(new Font("", 18));
-			gc.fillText("Press Enter to play", 225, 400);
-		} else {
-			if (cpu.scoreProperty().getValue() == 5) {
-				gc.setFill(Color.RED);
-				gc.setFont(new Font("", 50));
-				gc.fillText("Game Over", 175, 300);
-				gc.setFill(Color.YELLOWGREEN);
-				gc.setFont(new Font("", 18));
-				gc.fillText("Press Enter to play", 225, 400);
-			}}
+		
 	}
 
 	private void collision() {
