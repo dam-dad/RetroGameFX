@@ -15,7 +15,7 @@ El juego está disponible para **Windows** en versión *instalable*.
 
 Descarga aquí:
 
-* [RetroGameFX v1.0.0]()
+* [RetroGameFX v1.0.0](https://github.com/dam-dad/RetroGameFX/releases)
 
 
 ### Juegos
