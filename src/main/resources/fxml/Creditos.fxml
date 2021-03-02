@@ -32,7 +32,7 @@
                   <Font size="31.0" />
                </font>
             </Text>
-            <Text fill="#20fa0cf2" layoutX="159.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulo" text="David Garrido" textAlignment="CENTER" wrappingWidth="414.8033752441406">
+            <Text fill="#20fa0cf2" layoutX="12.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulo" text="David Garrido" textAlignment="CENTER" wrappingWidth="576.8033752441406">
                <font>
                   <Font size="31.0" />
                </font>
