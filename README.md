@@ -41,12 +41,12 @@ Busca la salida de este laberinto ambientado en 2D.
 <p align="center"><img src="/Github_Images/Maze.PNG" width=""/></p>
 
 ### ¿Como jugar?
-Para jugar a los juegos primero debemos comprarlos y a continuación podemos usar el botón Jugar.
+Para jugar a los juegos primero debemos comprarlos y a continuación podemos usar el botón Jugar.<br>
 Cada juego puede moverse de una manera:
 
-Pong: Movimiento con ratón.
-BrickBreaker: Movimento con ratón.
-Snake: Movimiento con teclas.
+Pong: Movimiento con ratón. <br>
+BrickBreaker: Movimento con ratón.<br>
+Snake: Movimiento con teclas.<br>
 Laberinto:Movimiento con teclas.
 
 ### Documentación
