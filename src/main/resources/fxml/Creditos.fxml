@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane fx:id="View" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <rowConstraints>
+      <RowConstraints maxHeight="208.9999942779541" minHeight="10.0" prefHeight="176.9999942779541" />
+      <RowConstraints maxHeight="438.0000114440918" minHeight="10.0" prefHeight="279.0000057220459" />
+      <RowConstraints maxHeight="533.3333320617676" minHeight="10.0" prefHeight="143.9999885559082" />
+   </rowConstraints>
+   <columnConstraints>
+      <ColumnConstraints maxWidth="190.6666717529297" minWidth="10.0" prefWidth="150.0" />
+      <ColumnConstraints maxWidth="549.0" minWidth="9.333328247070312" prefWidth="478.33331298828125" />
+      <ColumnConstraints maxWidth="592.3333435058594" minWidth="10.0" prefWidth="171.66668701171875" />
+   </columnConstraints>
+   <children>
+      <Pane prefHeight="400.0" prefWidth="600.0" styleClass="imagen" stylesheets="@../css/Creditos.css" GridPane.columnSpan="3" GridPane.rowSpan="3">
+         <children>
+            <Text fill="#04d9ff" fontSmoothingType="LCD" layoutX="87.0" layoutY="104.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="texto" text="Hecho por :" textAlignment="CENTER" wrappingWidth="426.13671875">
+               <font>
+                  <Font size="48.0" />
+               </font>
+            </Text>
+            <Text fill="#20fa0cf2" layoutX="12.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulo" text="David Castellano" textAlignment="CENTER" wrappingWidth="576.8033752441406">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Text>
+            <Text fill="#20fa0cf2" layoutX="12.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulo" text="DAvid" textAlignment="CENTER" wrappingWidth="576.8033752441406">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Text>
+            <Text fill="#20fa0cf2" layoutX="12.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="titulo" text="Carlos Javier Cosme Melian" textAlignment="CENTER" wrappingWidth="576.8033752441406">
+               <font>
+                  <Font size="31.0" />
+               </font>
+            </Text>
+            <Button fx:id="Volver" layoutX="14.0" layoutY="348.0" mnemonicParsing="false" onAction="#onClickReturn" prefHeight="38.0" prefWidth="83.0" styleClass="dark-blue" text="Volver" />
+         </children></Pane>
+   </children>
+</GridPane>

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="View" maxHeight="1080.0" maxWidth="1920.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" styleClass="imagen" stylesheets="@../css/Sound.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="View" maxHeight="1080.0" maxWidth="1920.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" styleClass="imagen" stylesheets="@../css/Sound.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
 	<columnConstraints>
 		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
 		<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -55,7 +55,7 @@
 				<Insets />
 			</GridPane.margin>
 		</ComboBox>
-		<Button fx:id="butVolv" mnemonicParsing="false" onAction="#butOnVolv" prefHeight="40.0" prefWidth="119.0" styleClass="root" text="Volver" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+		<Button fx:id="butVolv" mnemonicParsing="false" onAction="#butOnVolv" prefHeight="40.0" prefWidth="119.0" styleClass="dark-blue" text="Volver" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
 			<font>
 				<Font size="18.0" />
 			</font>

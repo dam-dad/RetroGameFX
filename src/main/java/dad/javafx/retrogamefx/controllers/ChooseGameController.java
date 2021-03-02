@@ -16,6 +16,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
@@ -65,6 +67,36 @@ public class ChooseGameController implements Initializable {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChooseGameView.fxml"));
 		loader.setController(this);
 		loader.load();
+		View.setFocusTraversable(true);
+		View.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+			if (key.getCode() == KeyCode.ESCAPE) {
+				App.gotToMain();
+			}
+			if (key.getCode() == KeyCode.NUMPAD1) {
+				onJugar1Action(null);
+			}
+			if (key.getCode() == KeyCode.NUMPAD2) {
+				onJugar2Action(null);
+			}
+			if (key.getCode() == KeyCode.NUMPAD3) {
+				onJugar3Action(null);
+			}
+			if (key.getCode() == KeyCode.NUMPAD4) {
+				onJugar4Action(null);
+			}
+			if (key.getCode() == KeyCode.DIGIT1) {
+				onComprar1Action(null);
+			}
+			if (key.getCode() == KeyCode.DIGIT2) {
+				onComprar2Action(null);
+			}
+			if (key.getCode() == KeyCode.DIGIT3) {
+				onComprar3Action(null);
+			}
+			if (key.getCode() == KeyCode.DIGIT4) {
+				onComprar4Action(null);
+			}
+			});
 		
 	}
 	

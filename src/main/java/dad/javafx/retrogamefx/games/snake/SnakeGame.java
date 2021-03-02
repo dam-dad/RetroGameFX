@@ -77,13 +77,25 @@ public class SnakeGame extends GameScene{
 			if(key.getCode()==KeyCode.W) {
 				direction=Dir.up;
 			}
+			if(key.getCode()==KeyCode.UP) {
+				direction=Dir.up;
+			}
 			if(key.getCode()==KeyCode.A) {
+				direction=Dir.left;
+			}
+			if(key.getCode()==KeyCode.LEFT) {
 				direction=Dir.left;
 			}
 			if(key.getCode()==KeyCode.D) {
 				direction=Dir.right;
 			}
+			if(key.getCode()==KeyCode.RIGHT) {
+				direction=Dir.right;
+			}
 			if(key.getCode()==KeyCode.S) {
+				direction=Dir.down;
+			}
+			if(key.getCode()==KeyCode.DOWN) {
 				direction=Dir.down;
 			}
 			if(key.getCode()==KeyCode.ENTER) {

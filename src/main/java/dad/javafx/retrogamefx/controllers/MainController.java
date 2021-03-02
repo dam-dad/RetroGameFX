@@ -16,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -45,7 +47,7 @@ public class MainController {
 	
     @FXML
     void onClickCreditos(ActionEvent event) {
-
+    	App.goToCredits();
     }
 
     @FXML
@@ -72,6 +74,24 @@ public class MainController {
 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainView.fxml"));
 	loader.setController(this);
 	loader.load();
+	View.setFocusTraversable(true);
+	View.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+		if (key.getCode() == KeyCode.ESCAPE) {
+			onClickSalir(null);
+		}
+		if (key.getCode() == KeyCode.J) {
+			try{onClickJugar(null);}catch(Exception e){}
+		}
+		if (key.getCode() == KeyCode.O) {
+			try{onClickOpciones(null);}catch(Exception e){}
+		}
+		if (key.getCode() == KeyCode.C) {
+			try{onClickOpciones(null);}catch(Exception e){}
+		}
+		if (key.getCode() == KeyCode.S) {
+			onClickSalir(null);
+		}
+		});
 	
 }
 }

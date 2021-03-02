@@ -96,6 +96,22 @@ public class Pong extends GameScene {
 
 	@Override
 	protected void gameLoop(double diff) {
+		if (comprobar()) {
+		if (player.scoreProperty().getValue() == 5) {
+			gc.setFill(Color.RED);
+			gc.setFont(new Font("", 70));
+			gc.fillText("WIN", 175, 300);
+			gc.setFill(Color.YELLOWGREEN);
+			gc.setFont(new Font("", 18));
+			gc.fillText("Press Enter to play", 225, 400);
+		} else {if (cpu.scoreProperty().getValue() == 5) {
+			gc.setFill(Color.RED);
+			gc.setFont(new Font("", 50));
+			gc.fillText("Game Over", 175, 300);
+			gc.setFill(Color.YELLOWGREEN);
+			gc.setFont(new Font("", 18));
+			gc.fillText("Press Enter to play", 225, 400);
+			}}}else {
 			// actualizar elementos del juego
 			update(diff);
 
@@ -103,9 +119,21 @@ public class Pong extends GameScene {
 			collision();
 
 			// renderizado (pintar)
-			render(gc);
+			render(gc);}
 
 	}
+		private boolean comprobar() {
+			boolean fin = false;
+			if (player.scoreProperty().getValue() == 5) {
+
+				fin = true;
+			} else {
+				if (cpu.scoreProperty().getValue() == 5) {
+					fin = true;
+				}
+			}
+			return fin;
+		}
 
 	private void render(GraphicsContext gc) {
 
@@ -116,10 +144,16 @@ public class Pong extends GameScene {
 		
 		
 	}
-
+	// aumenta la velocidad despues de chocar y cambio de direccion
 	private void collision() {
 
-		// aumenta la velocidad despues de chocar y cambio de direccion
+		//el rebote dentro de la pelota va muy a ratos
+		if(ball.getY()>0) {
+			ball.setDirection(new Point2D(ball.getDirection().getX(), -ball.getDirection().getY()));}
+		
+		if(ball.getY()<getHeight()) {
+		ball.setDirection(new Point2D(ball.getDirection().getX(), -ball.getDirection().getY()));}
+		
 		ball.checkCollision(player);
 		ball.checkCollision(cpu);
 		ball.checkCollision(topWall);

@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 
 public class SettingsController implements Initializable {
@@ -60,6 +62,12 @@ public class SettingsController implements Initializable {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Sound.fxml"));
 		loader.setController(this);
 		loader.load();
+		View.setFocusTraversable(true);
+		View.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
+			if (key.getCode() == KeyCode.ESCAPE) {
+				App.gotToMain();
+			}
+			});
 		
 	}
 

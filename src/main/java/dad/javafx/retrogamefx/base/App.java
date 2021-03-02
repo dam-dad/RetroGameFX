@@ -1,6 +1,7 @@
 package dad.javafx.retrogamefx.base;
 
 import dad.javafx.retrogamefx.controllers.ChooseGameController;
+import dad.javafx.retrogamefx.controllers.CreditosController;
 import dad.javafx.retrogamefx.controllers.MainController;
 import dad.javafx.retrogamefx.controllers.SettingsController;
 import dad.javafx.retrogamefx.games.GameScene;
@@ -9,6 +10,7 @@ import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 
@@ -22,11 +24,13 @@ public class App extends Application {
 	private MainController controller;
 	private ChooseGameController chooseGameController;
 	private SettingsController settingsController;
+	private CreditosController creditosController;
 	
 	// Escenas
 	static Scene mainScene;
 	static Scene chooseGameScene;
 	static Scene settingsScene;
+	static Scene creditsScene;
 	
 	public static Stage primaryStage;
 
@@ -38,16 +42,17 @@ public class App extends Application {
 		controller = new MainController();
 		chooseGameController = new ChooseGameController();
 		settingsController = new SettingsController();
+		creditosController= new CreditosController();
 
 		mainScene = new Scene(controller.getView(), 600, 400);
 		chooseGameScene = new Scene(chooseGameController.getView(), 600, 400);
 		settingsScene = new Scene(settingsController.getView(), 600, 400);
-
+		creditsScene = new Scene(creditosController.getView(), 600, 400);
 		primaryStage.setScene(mainScene);
 		primaryStage.setTitle("RetroGamesFX");
 		primaryStage.show();
 		primaryStage.setResizable(false);
-		// primaryStage.getIcons().add(new Image("/images/classroom-24x24.png"));
+		 primaryStage.getIcons().add(new Image("/images/arcade.ico"));
 		playMusic("MainSong");
 	}
 
@@ -68,6 +73,9 @@ public class App extends Application {
 	// Cambio de ventana a Opciones
 	public static void goToSettings() {
 		primaryStage.setScene(settingsScene);
+	}
+	public static void goToCredits() {
+		primaryStage.setScene(creditsScene);
 	}
 
 	// Cambio de ventana de Juego

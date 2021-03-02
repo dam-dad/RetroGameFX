@@ -36,7 +36,7 @@
 				<RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Pane prefHeight="200.0" prefWidth="200.0" styleClass="jueg03" GridPane.columnSpan="2" />
+				<Pane fx:id="Snake" prefHeight="200.0" prefWidth="200.0" styleClass="jueg03" GridPane.columnSpan="2" />
 				<Button fx:id="jugar3Button" mnemonicParsing="false" onAction="#onJugar3Action" styleClass="root" text="Jugar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
 				<Button fx:id="comprar3Button" mnemonicParsing="false" onAction="#onComprar3Action" text="Comprar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
 			</children>
@@ -51,7 +51,7 @@
 				<RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Pane prefHeight="200.0" prefWidth="200.0" styleClass="jueg02" GridPane.columnSpan="2" />
+				<Pane fx:id="Brick" prefHeight="200.0" prefWidth="200.0" styleClass="jueg02" GridPane.columnSpan="2" />
 				<Button fx:id="jugar2Button" mnemonicParsing="false" onAction="#onJugar2Action" text="Jugar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
 				<Button fx:id="comprar2Button" mnemonicParsing="false" onAction="#onComprar2Action" text="Comprar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
 			</children>
@@ -66,7 +66,7 @@
 				<RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Pane prefHeight="200.0" prefWidth="200.0" styleClass="jueg01" GridPane.columnSpan="2" />
+				<Pane fx:id="Pong" prefHeight="200.0" prefWidth="200.0" styleClass="jueg01" GridPane.columnSpan="2" />
 				<Button fx:id="comprar1Button" mnemonicParsing="false" onAction="#onComprar1Action" text="Comprar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
 				<Button fx:id="jugar1Button" mnemonicParsing="false" onAction="#onJugar1Action" text="Jugar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
 			</children>
@@ -81,7 +81,7 @@
 				<RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
 			</rowConstraints>
 			<children>
-				<Pane prefHeight="200.0" prefWidth="200.0" styleClass="jueg04" GridPane.columnSpan="2" />
+				<Pane fx:id="Lab" prefHeight="200.0" prefWidth="200.0" styleClass="jueg04" GridPane.columnSpan="2" />
 				<Button fx:id="comprar4Button" mnemonicParsing="false" onAction="#onComprar4Action" text="Comprar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
 				<Button fx:id="jugar4Button" mnemonicParsing="false" onAction="#onJugar4Action" text="Jugar" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
 			</children>

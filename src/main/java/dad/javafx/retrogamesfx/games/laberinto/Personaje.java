@@ -19,7 +19,7 @@ public class Personaje extends Sprite{
 	@Override
 	public void render(GraphicsContext gc) {
 		Image sprite= new Image("images/sprite.png");
-		gc.drawImage(sprite,getX(), getY(), getWidth(), getHeight());
+		gc.drawImage(sprite,getX()+100, getY()+100, getWidth(), getHeight());
 		
 	}
 	@Override

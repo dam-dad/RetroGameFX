@@ -35,7 +35,7 @@ public class BrickBreaker extends GameScene {
 	static int maxFilas = 10;
 	static int maxColumnas = 20;
 	static int anchoBloque = 40;
-	static int altoBloque = 40;
+	static int altoBloque = 30;
 	GraphicsContext gc;
 
 	// view
@@ -97,6 +97,15 @@ public class BrickBreaker extends GameScene {
 		canvas.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 			if (key.getCode() == KeyCode.ESCAPE) {
 				App.gotToMain();
+			}if (key.getCode() == KeyCode.ENTER) {
+				
+				gameStarted = false;
+				player.setBounds(getWidth() / 2, getHeight() - 10, 200, 10);
+				player.scoreProperty().setValue(0);
+				player.livesProperty().setValue(5);
+				bricks = new ArrayList<Brick>();
+				BricksPack();
+				
 			}
 		});
 	}
