@@ -13,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import dad.javafx.retrogamefx.base.App;
+import dad.javafx.retrogamefx.formulario.Myscores;
 import dad.javafx.retrogamefx.games.GameScene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -96,6 +97,7 @@ public class BrickBreaker extends GameScene {
 		canvas.setOnMouseClicked(e -> gameStarted = true);
 		canvas.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 			if (key.getCode() == KeyCode.ESCAPE) {
+				Myscores.Brickscore=player.scoreProperty().getValue(); 
 				App.gotToMain();
 			}if (key.getCode() == KeyCode.ENTER) {
 				

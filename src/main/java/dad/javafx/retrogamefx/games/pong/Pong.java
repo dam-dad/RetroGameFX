@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import dad.javafx.retrogamefx.base.App;
+import dad.javafx.retrogamefx.formulario.Myscores;
 import dad.javafx.retrogamefx.games.GameScene;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
@@ -24,7 +25,7 @@ public class Pong extends GameScene {
 	private boolean gameStarted;
 
 	// model
-
+	private String scoreWS="no acabaste la partida";
 	private Player player;
 	private Player cpu;
 	private Background background;
@@ -84,6 +85,7 @@ public class Pong extends GameScene {
 		canvas.setFocusTraversable(true);
 		canvas.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
 			if (key.getCode() == KeyCode.ESCAPE) {
+				Myscores.Pongscore=scoreWS; 
 				App.gotToMain();
 			}
 			if (key.getCode() == KeyCode.ENTER) {
@@ -98,6 +100,7 @@ public class Pong extends GameScene {
 	protected void gameLoop(double diff) {
 		if (comprobar()) {
 		if (player.scoreProperty().getValue() == 5) {
+			scoreWS="Win";
 			gc.setFill(Color.RED);
 			gc.setFont(new Font("", 70));
 			gc.fillText("WIN", 175, 300);
@@ -105,6 +108,7 @@ public class Pong extends GameScene {
 			gc.setFont(new Font("", 18));
 			gc.fillText("Press Enter to play", 225, 400);
 		} else {if (cpu.scoreProperty().getValue() == 5) {
+			scoreWS="Lose";
 			gc.setFill(Color.RED);
 			gc.setFont(new Font("", 50));
 			gc.fillText("Game Over", 175, 300);

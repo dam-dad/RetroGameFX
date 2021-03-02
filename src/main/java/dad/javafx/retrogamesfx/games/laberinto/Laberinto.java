@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import dad.javafx.retrogamefx.base.App;
+import dad.javafx.retrogamefx.formulario.Myscores;
 import dad.javafx.retrogamefx.games.GameScene;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -723,6 +724,9 @@ public class Laberinto extends GameScene {
 
 //---------------------------Dibujado del mapa-------------------------------------//
 	public void render(GraphicsContext gc) {
+		if(x==xf && y==yf) {
+			Myscores.Lab+=1; 
+		}
 		for (int fila = 0; fila <= maxFilas - 1; fila++) {
 			for (int columna = 0; columna <= maxColumnas - 1; columna++) {
 				// pintarCuadrado(gc);

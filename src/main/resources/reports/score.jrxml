@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="agenda" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aed0552c-9c22-49b4-bd5e-3f1df7b0fd50">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Personas"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="473"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="513"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="pongscore" class="java.lang.String">
+		<fieldDescription><![CDATA[PongScore]]></fieldDescription>
+	</field>
+	<field name="snakescore" class="java.lang.int">
+		<fieldDescription><![CDATA[Snakescore]]></fieldDescription>
+	</field>
+	<field name="brickscore" class="java.lang.int">
+		<fieldDescription><![CDATA[Brickscore]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="130" y="4" width="300" height="30" uuid="610942e7-3b4f-4c99-baa4-8de071cbde46"/>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[My Scores]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="185" height="30" uuid="0bfa55c2-41df-482e-b526-65ccd69da619"/>
+				<text><![CDATA[Pong]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="0" width="185" height="30" uuid="25f4d9b6-3532-4c7e-b743-612ad7a199e0"/>
+				<text><![CDATA[BrickBreaker]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="0" width="185" height="30" uuid="195b42cd-60a8-47e2-a6d5-44d4e10a330b"/>
+				<text><![CDATA[Snake]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="71" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="26" width="185" height="30" uuid="19957470-445a-4908-a352-5967f9822248"/>
+				<textField>
+					<reportElement x="0" y="0" width="185" height="30" uuid="83c9e44b-f9e3-4882-a862-aa107ca22af6"/>
+					<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<textField>
+				<reportElement x="185" y="26" width="185" height="30" uuid="4f2255aa-97ce-4181-b88f-7ba742ce298c"/>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="26" width="185" height="30" uuid="f48fda83-2698-4025-8aa6-fd55a65ed0a7"/>
+				<textFieldExpression><![CDATA[$F{telefono}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import dad.javafx.retrogamefx.base.App;
+import dad.javafx.retrogamefx.formulario.Myscores;
 import dad.javafx.retrogamefx.games.GameScene;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -108,8 +109,10 @@ public class SnakeGame extends GameScene{
 				newFood();}
 			}
 			if(key.getCode()==KeyCode.ESCAPE) {
+				Myscores.Snakescore=scoreProperty().getValue(); 
 				App.gotToMain();;	
 			}
+
 		});
 		Cuerpo();
 		newFood();
