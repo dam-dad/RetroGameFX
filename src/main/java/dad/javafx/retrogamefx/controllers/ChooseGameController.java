@@ -16,9 +16,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 public class ChooseGameController implements Initializable {
@@ -56,6 +58,19 @@ public class ChooseGameController implements Initializable {
 
     @FXML
     private Text puntosText;
+    
+    @FXML
+    private Pane Brick;
+    
+    @FXML
+    private Pane Pong;
+    
+    @FXML
+    private Pane Snake;
+    
+    @FXML
+    private Pane Lab;
+    
     @FXML
     private Text puntos;
     
@@ -111,7 +126,10 @@ public class ChooseGameController implements Initializable {
     void onComprar1Action(ActionEvent event) {
     	if(!comprar1) {
     	puntosProperty().setValue(puntosProperty().getValue()-1);
-    	comprar1=true;}
+    	comprar1=true;
+    	Pong.setStyle("-fx-background-image:url(./images/Pong.PNG);-fx-background-size:200px,200px;-fx-background-size:cover,contain;");
+    	
+    	}
     }
 
     @FXML
@@ -119,6 +137,7 @@ public class ChooseGameController implements Initializable {
     	if(!comprar2) {
         	puntosProperty().setValue(puntosProperty().getValue()-1);
         	comprar2=true;
+        	Brick.setStyle("-fx-background-image:url(./images/BrickBreaker.PNG);-fx-background-size:200px,200px;-fx-background-size:cover,contain;");
         	}
     }
 
@@ -127,6 +146,7 @@ public class ChooseGameController implements Initializable {
     	if(!comprar3) {
         	puntosProperty().setValue(puntosProperty().getValue()-1);
         	comprar3=true;
+        	Snake.setStyle("-fx-background-image:url(./images/Snake.PNG);-fx-background-size:200px,200px;-fx-background-size:cover,contain;");
         	}
     }
 
@@ -135,6 +155,7 @@ public class ChooseGameController implements Initializable {
     	if(!comprar4) {
         	puntosProperty().setValue(puntosProperty().getValue()-1);
         	comprar4=true;
+        	Lab.setStyle("-fx-background-image:url(./images/Laberinto.PNG);-fx-background-size:200px,200px;-fx-background-size:cover,contain;");
         	}
     }
 

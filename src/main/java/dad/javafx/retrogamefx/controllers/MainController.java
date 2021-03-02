@@ -86,7 +86,7 @@ public class MainController {
 			try{onClickOpciones(null);}catch(Exception e){}
 		}
 		if (key.getCode() == KeyCode.C) {
-			try{onClickOpciones(null);}catch(Exception e){}
+			try{onClickCreditos(null);}catch(Exception e){}
 		}
 		if (key.getCode() == KeyCode.S) {
 			onClickSalir(null);
