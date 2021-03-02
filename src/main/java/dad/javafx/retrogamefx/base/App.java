@@ -52,7 +52,7 @@ public class App extends Application {
 		primaryStage.setTitle("RetroGamesFX");
 		primaryStage.show();
 		primaryStage.setResizable(false);
-		 primaryStage.getIcons().add(new Image("/images/arcade.ico"));
+		primaryStage.getIcons().add(new Image("/images/arcadeico.png"));
 		playMusic("MainSong");
 	}
 

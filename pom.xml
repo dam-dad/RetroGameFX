@@ -57,7 +57,7 @@
 							<organizationName>DAD</organizationName>
 							<bundleJre>true</bundleJre>
 							<createZipball>true</createZipball>
-							<generateInstaller>false</generateInstaller>
+							<generateInstaller>true</generateInstaller>
 							<winConfig>
 								<generateMsi>false</generateMsi>
 								<icoFile>arcade.ico</icoFile>
