@@ -44,3 +44,8 @@ Busca la salida de este laberinto ambientado en 2D.
 
 
 
+### Agradecimientos
+
+* [Bloques by: OpengameArt](https://opengameart.org/content/breakout-graphics)
+* [Canción by: SagittariusV](https://www.youtube.com/c/SagittariusV/featured)
+* [El Salvador](https://github.com/fvarrui)
