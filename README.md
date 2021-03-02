@@ -22,15 +22,30 @@ Descarga aquí:
 
 #### Pong
 El mítico juego Pong que tanto revolucionó en su momento recreado en un ordenador. Hay muchas maneras de hacerlo, pero nosotros optamos por usar JavaFX y su herramienta Canvas para ello.
+
 <p align="center"><img src="/Github_Images/Pong.PNG" width=""/></p>
+
+#### Brick-Breaker
+Otro clásico de las maquinas arcades donde el objetivo era destruir todos los ladrillos sin perder tus 3 0 5 vidas y nosotros usamos el formato de 3 vidas por ahora.
+
+<p align="center"><img src="/Github_Images/BrickBreaker.PNG" width=""/></p>
 
 #### Snake
 Uno más conocido por su paso por los telefonos moviles de los 2000, pero este fue creado en el 1976 pensado para ordenadores más que para maquinas de arcade, aunque pega muy bien con la temática y traera buenos recuerdos a muchos usurios.
 
 <p align="center"><img src="/Github_Images/snake.png" width=""/></p>
 
+#### Laberinto
+Busca la salida de este laberinto ambientado en 2D.
+
+<p align="center"><img src="/Github_Images/Maze.PNG" width=""/></p>
 
 ### Documentación
 
 
 
+### Agradecimientos
+
+* [Bloques by: OpengameArt](https://opengameart.org/content/breakout-graphics)
+* [Canción by: SagittariusV](https://www.youtube.com/c/SagittariusV/featured)
+* [El Salvador](https://github.com/fvarrui)
