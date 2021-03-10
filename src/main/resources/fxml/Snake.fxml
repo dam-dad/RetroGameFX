@@ -10,12 +10,12 @@
 
 <StackPane fx:id="view" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Canvas fx:id="canvas" height="600.0" width="600.0" />
+      <Canvas fx:id="canvas" focusTraversable="true" height="600.0" width="600.0" />
       <BorderPane fx:id="hudPane" mouseTransparent="true">
          <top>
             <VBox alignment="TOP_RIGHT" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="player1ScoreLabel" alignment="BOTTOM_RIGHT" contentDisplay="BOTTOM" text="0" textFill="WHITE">
+                  <Label fx:id="scoreLabel" alignment="BOTTOM_RIGHT" contentDisplay="BOTTOM" text="0" textFill="WHITE">
                      <font>
                         <Font size="28.0" />
                      </font>

@@ -31,13 +31,19 @@
 			<artifactId>javafx-media</artifactId>
 			<version>15.0.1</version>
 		</dependency>
-			<dependency>
+		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
 			<version>6.11.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.dyn4j</groupId>
+			<artifactId>dyn4j</artifactId>
+			<version>4.0.1</version>
+		</dependency>
 	</dependencies>
-		<build>
+	
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>io.github.fvarrui</groupId>
